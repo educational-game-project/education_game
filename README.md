@@ -14,3 +14,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+Figma Link: https://www.figma.com/file/7yAMFoLBROUlGhBW7sv1JF/Game-Project?type=design&node-id=410%3A46&mode=design&t=vUviSuF8C2uvqY9g-1
