@@ -16,3 +16,4 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 Figma Link: https://www.figma.com/file/7yAMFoLBROUlGhBW7sv1JF/Game-Project?type=design&node-id=410%3A46&mode=design&t=vUviSuF8C2uvqY9g-1
+Postman Link: https://app.getpostman.com/join-team?invite_code=b69255e19c972d3664e07049cc8c7be5&target_code=a73b1487bdbe171d90ca996dd4d79f94
