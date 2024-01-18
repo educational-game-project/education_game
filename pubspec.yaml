@@ -80,7 +80,7 @@ flutter:
   # example:
   assets:
     - assets/icons/
-    - assets/images/
+    - assets/fonts/
   fonts:
     - family: ChubbyCrayon
       fonts:
