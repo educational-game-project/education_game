@@ -5,7 +5,6 @@ import 'package:education_game/models/api/endpoints.dart';
 import 'package:education_game/models/api/server_exception.dart';
 import 'package:education_game/repositories/params/login_params.dart';
 import 'package:education_game/repositories/responses/login_responses.dart';
-import 'package:flutter/material.dart';
 
 class ApiRepository {
   final BaseFetcher _fetcher = BaseFetcher();

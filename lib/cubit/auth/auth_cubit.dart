@@ -24,8 +24,8 @@ class AuthCubit extends Cubit<AuthState> {
       if (event is LoginSuccess) {
         if (event.responses.baseResponse.status == 'success') {
           debugPrint('tokens ${event.responses.tokens}');
-          emit(state.copyWith(
-              user: event.responses.user, tokens: event.responses.tokens));
+          emit(AuthState.authenticated(
+              tokens: event.responses.tokens, user: event.responses.user));
           debugPrint('tokens ${state.tokens}');
           state.tokens?.save();
           Get.offAll(HomePage());
@@ -47,5 +47,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   void login(String name) {
     _apiCubit.login(LoginParams(name: name));
+  }
+
+  void logout() {
+    emit(AuthState.unauthenticated());
+    state.tokens?.remove();
   }
 }

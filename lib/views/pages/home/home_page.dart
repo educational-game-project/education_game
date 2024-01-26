@@ -1,5 +1,6 @@
 import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/cubit/auth/auth_cubit.dart';
+import 'package:education_game/enums/api/auth_status_enum.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/login/login_page.dart';
@@ -64,11 +65,7 @@ class _HomePage extends StatelessWidget {
                       // tombol keluar
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const PlaygroundPage(),
-                              ));
+                          context.read<AuthCubit>().logout();
                         },
                         child: Image.asset(
                           AppImages.tombolKeluar,
@@ -83,17 +80,21 @@ class _HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Align(
+                alignment: Alignment.center,
+                child: Text(state.status.toString()),
+              ),
               // tombol mulai
               Align(
                 alignment: Alignment.bottomRight,
                 child: GestureDetector(
                   onTap: () {
                     debugPrint('${state.tokens}');
-                    switch (state.tokens?.isAuthenticated) {
-                      case true:
+                    switch (state.status) {
+                      case AuthStatus.authenticated:
                         Get.to(PlaygroundPage());
                         break;
-                      case false:
+                      case AuthStatus.unauthenticated:
                         Get.to(LoginPage());
                         break;
                     }

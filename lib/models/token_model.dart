@@ -42,6 +42,15 @@ class TokensModel extends Equatable {
     );
   }
 
+  void remove() {
+    _storage.delete(
+      key: TokenEnum.accoessToken.name,
+    );
+    _storage.delete(
+      key: TokenEnum.refreshToken.name,
+    );
+  }
+
   @override
   List<Object?> get props => [accoessToken, refreshToken];
 
