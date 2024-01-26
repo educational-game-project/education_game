@@ -2,48 +2,60 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 enum TokenEnum {
-  token,
+  accoessToken,
   refreshToken,
 }
 
-class TokenModel extends Equatable {
-  final String? token;
-  final String? refreshToken;
+class TokensModel extends Equatable {
+  final String accoessToken;
+  final String refreshToken;
   final _storage = const FlutterSecureStorage();
 
-  TokenModel({
-    this.token,
-    this.refreshToken,
+  TokensModel({
+    this.accoessToken = '',
+    this.refreshToken = '',
   });
 
-  factory TokenModel.fromJson(Map<String, dynamic> json) {
-    return TokenModel(
-      token: json['token'],
+  factory TokensModel.fromJson(Map<String, dynamic> json) {
+    return TokensModel(
+      accoessToken: json['accessToken'],
       refreshToken: json['refreshToken'],
     );
   }
 
-  Future<TokenModel> get read async {
-    final token = await _storage.read(key: TokenEnum.token.name);
-    final refreshToken = await _storage.read(key: TokenEnum.refreshToken.name);
-    return TokenModel(refreshToken: refreshToken, token: token);
+  Future<TokensModel> read() async {
+    final accoessToken =
+        await _storage.read(key: TokenEnum.accoessToken.name) ?? '';
+    final refreshToken =
+        await _storage.read(key: TokenEnum.refreshToken.name) ?? '';
+    return TokensModel(refreshToken: refreshToken, accoessToken: accoessToken);
   }
 
-  void get save {
-    _storage.write(key: TokenEnum.token.name, value: token);
-    _storage.write(key: TokenEnum.refreshToken.name, value: refreshToken);
+  void save() {
+    _storage.write(
+      key: TokenEnum.accoessToken.name,
+      value: accoessToken,
+    );
+    _storage.write(
+      key: TokenEnum.refreshToken.name,
+      value: refreshToken,
+    );
   }
 
   @override
-  List<Object?> get props => [token, refreshToken];
+  List<Object?> get props => [accoessToken, refreshToken];
 
-  TokenModel copyWith({
-    String? token,
+  bool get isAuthenticated {
+    return accoessToken != '' && refreshToken != '';
+  }
+
+  TokensModel copyWith({
+    String? accoessToken,
     String? refreshToken,
   }) {
-    return TokenModel(
-      token: token,
-      refreshToken: refreshToken,
+    return TokensModel(
+      accoessToken: accoessToken ?? this.accoessToken,
+      refreshToken: refreshToken ?? this.refreshToken,
     );
   }
 }
