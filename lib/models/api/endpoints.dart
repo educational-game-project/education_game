@@ -4,4 +4,17 @@ class EndPoints {
 
   // auth
   static const loginUrl = '/login';
+
+  // game
+  static const gameUrl = '/games';
+
+  // level
+  static const levelUrl = '/level/find';
+  static const levelInitUrl = '/level/init';
+
+  // record
+  static const recordUrl = '/record';
+
+  // leaderboard
+  static const leaderboardUrl = '/leaderboard';
 }
