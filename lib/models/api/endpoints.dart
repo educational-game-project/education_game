@@ -4,6 +4,7 @@ class EndPoints {
 
   // auth
   static const loginUrl = '/login';
+  static const logoutUrl = '/logout';
 
   // game
   static const gameUrl = '/games';

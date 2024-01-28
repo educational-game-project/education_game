@@ -20,4 +20,15 @@ class ApiRepository {
       return Left(BaseResponse(message: e.message));
     }
   }
+
+  Future<BaseResponse> logout() async {
+    try {
+      final resp = await _fetcher.post(
+        EndPoints.logoutUrl,
+      );
+      return BaseResponse(message: resp.message);
+    } on ServerException catch (e) {
+      return BaseResponse(message: e.message);
+    }
+  }
 }
