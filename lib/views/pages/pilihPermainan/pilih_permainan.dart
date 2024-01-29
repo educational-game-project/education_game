@@ -58,6 +58,15 @@ class _PilihPermainan extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Color(0xff2FABE0),
                           borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.20),
+                              spreadRadius: 0,
+                              blurRadius: 6,
+                              offset:
+                                  Offset(2, 4), // changes position of shadow
+                            ),
+                          ],
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -89,6 +98,15 @@ class _PilihPermainan extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Color(0xffB764C1),
                           borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.20),
+                              spreadRadius: 0,
+                              blurRadius: 6,
+                              offset:
+                                  Offset(2, 4), // changes position of shadow
+                            ),
+                          ],
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -120,6 +138,15 @@ class _PilihPermainan extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Color(0xff4AB448),
                           borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.20),
+                              spreadRadius: 0,
+                              blurRadius: 6,
+                              offset:
+                                  Offset(2, 4), // changes position of shadow
+                            ),
+                          ],
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
