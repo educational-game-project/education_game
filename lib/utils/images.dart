@@ -8,4 +8,5 @@ class AppImages {
   static const center = 'assets/icons/center.png';
   static const kiriBawah = "assets/icons/kiri_bawah.png";
   static const kananBawah = "assets/icons/kanan_bawah.png";
+  static const tombolKembali = "assets/icons/back_arrow.png";
 }

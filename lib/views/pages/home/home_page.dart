@@ -4,6 +4,7 @@ import 'package:education_game/enums/api/auth_status_enum.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/login/login_page.dart';
+import 'package:education_game/views/pages/pilihPermainan/pilih_permainan.dart';
 import 'package:education_game/views/pages/playground_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -91,11 +92,17 @@ class _HomePage extends StatelessWidget {
                   onTap: () {
                     debugPrint('${state.tokens}');
                     switch (state.status) {
+                      // case AuthStatus.authenticated:
+                      //   Get.to(PlaygroundPage());
+                      //   break;
+                      // case AuthStatus.unauthenticated:
+                      //   Get.to(LoginPage());
+                      //   break;
                       case AuthStatus.authenticated:
                         Get.to(PlaygroundPage());
                         break;
                       case AuthStatus.unauthenticated:
-                        Get.to(LoginPage());
+                        Get.to(PilihPermainan());
                         break;
                     }
                   },
