@@ -8,4 +8,9 @@ class AppImages {
   static const center = 'assets/icons/center.png';
   static const kiriBawah = "assets/icons/kiri_bawah.png";
   static const kananBawah = "assets/icons/kanan_bawah.png";
+  static const logo = "assets/icons/logo.png";
+  static const think = "assets/icons/think.png";
+  static const batang = "assets/icons/batang.png";
+  static const noGreen = "assets/icons/noGreen.png";
+  static const yesRed = "assets/icons/yesRed.png";
 }

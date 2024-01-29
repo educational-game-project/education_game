@@ -1,5 +1,5 @@
 import 'package:education_game/cubit/auth/auth_cubit.dart';
-import 'package:education_game/views/pages/home/home_page.dart';
+import 'package:education_game/views/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +19,7 @@ class Providers extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit()..initialAuth(),
-      child: App(),
+      child: const App(),
     );
   }
 }
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: const SplashScreen(),
     );
   }
 }
