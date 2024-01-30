@@ -18,7 +18,7 @@ class Providers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit()..initialAuth(),
+      create: (context) => AuthCubit(),
       child: const App(),
     );
   }

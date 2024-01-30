@@ -1,12 +1,12 @@
 import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/cubit/auth/auth_cubit.dart';
 import 'package:education_game/enums/api/auth_status_enum.dart';
+import 'package:education_game/models/token_model.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/login/login_page.dart';
 import 'package:education_game/views/pages/pilihPermainan/pilih_permainan.dart';
-import 'package:education_game/views/pages/playground_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -66,7 +66,7 @@ class _HomePage extends StatelessWidget {
                     children: [
                       // tombol keluar
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           Get.dialog(
                             Center(
                               child: SizedBox(
@@ -206,6 +206,16 @@ class _HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              if (state.apiState == ApiLoading)
+                Positioned.fill(
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: double.infinity,
+                    width: double.infinity,
+                    color: Colors.white.withOpacity(0.25),
+                    child: Text('Loading...'),
+                  ),
+                )
             ],
           ),
         );

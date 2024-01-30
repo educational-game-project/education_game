@@ -24,7 +24,11 @@ class AuthState extends Equatable {
     TokensModel? tokens,
     UserModel? user,
   }) {
-    return AuthState._(status: AuthStatus.authenticated);
+    return AuthState._(
+      status: AuthStatus.authenticated,
+      user: user,
+      tokens: tokens,
+    );
   }
 
   @override
