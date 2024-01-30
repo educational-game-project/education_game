@@ -19,9 +19,7 @@ class ApiRepository {
       );
       return Right(LoginResponses(resp));
     } on ServerException catch (e) {
-      return Left(BaseResponse(
-          message: e.baseResponse?.message,
-          statusCode: e.baseResponse?.statusCode));
+      return Left(e.ErrorBaseResponse);
     }
   }
 
@@ -32,18 +30,18 @@ class ApiRepository {
           await _fetcher.post(EndPoints.refreshTokenUrl, data: params.toJson);
       return Right(RefreshTokensResponses(resp));
     } on ServerException catch (e) {
-      return Left(BaseResponse(message: e.message));
+      return Left(e.ErrorBaseResponse);
     }
   }
 
-  Future<BaseResponse> logout() async {
-    try {
-      final resp = await _fetcher.post(
-        EndPoints.logoutUrl,
-      );
-      return BaseResponse(message: resp.message);
-    } on ServerException catch (e) {
-      return BaseResponse(message: e.message);
-    }
-  }
+  // Future<BaseResponse> logout() async {
+  //   try {
+  //     final resp = await _fetcher.post(
+  //       EndPoints.logoutUrl,
+  //     );
+  //     return BaseResponse(message: resp.message);
+  //   } on ServerException catch (e) {
+  //     return Left(e.ErrorBaseResponse);
+  //   }
+  // }
 }
