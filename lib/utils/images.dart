@@ -14,4 +14,6 @@ class AppImages {
   static const batang = "assets/icons/batang.png";
   static const noGreen = "assets/icons/noGreen.png";
   static const yesRed = "assets/icons/yesRed.png";
+  static const home = "assets/icons/home.png";
+  static const backArrow = "assets/icons/back_arrow.png";
 }

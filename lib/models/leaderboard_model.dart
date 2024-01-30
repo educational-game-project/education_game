@@ -8,7 +8,9 @@ class LeaderboardModel extends Equatable {
   LeaderboardModel({this.user, this.score});
 
   factory LeaderboardModel.fromJson(Map<String, dynamic> json) {
-    return LeaderboardModel(user: json['user'], score: json['score']);
+    return LeaderboardModel(
+        user: json['user'] == null ? null : UserModel.fromJson(json['user']),
+        score: json['score']);
   }
 
   @override

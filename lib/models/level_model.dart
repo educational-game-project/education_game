@@ -34,8 +34,8 @@ class LevelModel extends Equatable {
       max: json['max'],
       liveLeft: json['liveLeft'],
       isValid: json['isValid'],
-      user: json['user'],
-      game: json['game'],
+      user: json['user'] == null ? null : UserModel.fromJson(json['user']),
+      game: json['game'] == null ? null : GameModel.fromJson(json['game']),
       deletedAt: json['deletedAt'] == null
           ? null
           : DateTime.tryParse(json['deletedAt']),

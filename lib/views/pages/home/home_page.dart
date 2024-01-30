@@ -67,7 +67,6 @@ class _HomePage extends StatelessWidget {
                       // tombol keluar
                       GestureDetector(
                         onTap: () {
-                          // context.read<AuthCubit>().logout();
                           Get.dialog(
                             Center(
                               child: SizedBox(
