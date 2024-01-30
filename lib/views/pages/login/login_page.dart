@@ -41,6 +41,7 @@ class _LoginPage extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: GeneralAppbar(),
           backgroundColor: AppColors.primary500,
           body: Form(
