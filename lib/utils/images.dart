@@ -15,5 +15,8 @@ class AppImages {
   static const noGreen = "assets/icons/noGreen.png";
   static const yesRed = "assets/icons/yesRed.png";
   static const home = "assets/icons/home.png";
+  static const sad = "assets/icons/sad.png";
+  static const retry = "assets/icons/retry.png";
   static const backArrow = "assets/icons/back_arrow.png";
+  static const vectorBottomLeft = "assets/icons/vector_bottom_left.png";
 }

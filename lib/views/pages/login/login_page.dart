@@ -4,7 +4,7 @@ import 'package:education_game/cubit/auth/auth_cubit.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
-import 'package:education_game/views/widgets/appbar/general_appbar.dart';
+// import 'package:education_game/views/widgets/appbar/general_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
