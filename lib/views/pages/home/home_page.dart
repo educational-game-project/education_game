@@ -6,7 +6,7 @@ import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/login/login_page.dart';
 import 'package:education_game/views/pages/pilihPermainan/pilih_permainan.dart';
-import 'package:education_game/views/pages/playground_page.dart';
+// import 'package:education_game/views/pages/playground_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
