@@ -2,8 +2,10 @@ import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/cubit/auth/auth_cubit.dart';
 import 'package:education_game/enums/api/auth_status_enum.dart';
 import 'package:education_game/utils/colors.dart';
+import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/login/login_page.dart';
+import 'package:education_game/views/pages/pilihPermainan/pilih_permainan.dart';
 import 'package:education_game/views/pages/playground_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ApiCubit(),
-      child: _HomePage(),
+      child: const _HomePage(),
     );
   }
 }
@@ -65,7 +67,104 @@ class _HomePage extends StatelessWidget {
                       // tombol keluar
                       GestureDetector(
                         onTap: () {
-                          context.read<AuthCubit>().logout();
+                          Get.dialog(
+                            Center(
+                              child: SizedBox(
+                                width: Get.width * 0.65,
+                                height: Get.height * 0.7,
+                                child: Material(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: AppColors.primary100,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: Get.width * 0.06),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(20),
+                                            child: Image.asset(
+                                              AppImages.think,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 3,
+                                          child: Column(
+                                            children: [
+                                              const Expanded(
+                                                flex: 2,
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  child: Text(
+                                                    "Yakin mau keluar?",
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          AppFonts.chubbyCrayon,
+                                                      fontSize: 32,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 5,
+                                                child: Stack(
+                                                  children: [
+                                                    Align(
+                                                      alignment: Alignment
+                                                          .bottomCenter,
+                                                      child: Image.asset(
+                                                        AppImages.batang,
+                                                      ),
+                                                    ),
+                                                    Align(
+                                                      alignment: Alignment
+                                                          .bottomCenter,
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap: () =>
+                                                                Get.back(),
+                                                            child: Image.asset(
+                                                              AppImages.noGreen,
+                                                            ),
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              context
+                                                                  .read<
+                                                                      AuthCubit>()
+                                                                  .logout();
+                                                              // Add Close App Action
+                                                            },
+                                                            child: Image.asset(
+                                                              AppImages.yesRed,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 30,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
                         },
                         child: Image.asset(
                           AppImages.tombolKeluar,
@@ -87,11 +186,17 @@ class _HomePage extends StatelessWidget {
                   onTap: () {
                     debugPrint('${state.tokens}');
                     switch (state.status) {
+                      // case AuthStatus.authenticated:
+                      //   Get.to(PlaygroundPage());
+                      //   break;
+                      // case AuthStatus.unauthenticated:
+                      //   Get.to(LoginPage());
+                      //   break;
                       case AuthStatus.authenticated:
-                        Get.to(PlaygroundPage());
+                        Get.to(() => const PilihPermainan());
                         break;
                       case AuthStatus.unauthenticated:
-                        Get.to(LoginPage());
+                        Get.to(() => const LoginPage());
                         break;
                     }
                   },

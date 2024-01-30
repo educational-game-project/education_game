@@ -1,6 +1,6 @@
 import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/cubit/auth/auth_cubit.dart';
-import 'package:education_game/models/api/endpoints.dart';
+// import 'package:education_game/models/api/endpoints.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/widgets/appbar/general_appbar.dart';
@@ -41,6 +41,7 @@ class _LoginPage extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: GeneralAppbar(),
           backgroundColor: AppColors.primary500,
           body: Form(
