@@ -80,10 +80,6 @@ class _HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Text(state.status.toString()),
-              ),
               // tombol mulai
               Align(
                 alignment: Alignment.bottomRight,

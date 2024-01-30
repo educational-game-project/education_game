@@ -23,10 +23,8 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (event is LoginSuccess) {
         if (event.responses.baseResponse.status == 'success') {
-          debugPrint('tokens ${event.responses.tokens}');
           emit(AuthState.authenticated(
               tokens: event.responses.tokens, user: event.responses.user));
-          debugPrint('tokens ${state.tokens}');
           state.tokens?.save();
           Get.offAll(HomePage());
         }
