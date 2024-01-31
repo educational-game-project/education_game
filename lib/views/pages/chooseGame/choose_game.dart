@@ -10,17 +10,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 
-class PilihPermainan extends StatelessWidget {
-  const PilihPermainan({super.key});
+class ChooseGame extends StatelessWidget {
+  const ChooseGame({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _PilihPermainan();
+    return _ChooseGame();
   }
 }
 
-class _PilihPermainan extends StatelessWidget {
-  const _PilihPermainan({super.key});
+class _ChooseGame extends StatelessWidget {
+  const _ChooseGame({super.key});
 
   @override
   Widget build(BuildContext context) {

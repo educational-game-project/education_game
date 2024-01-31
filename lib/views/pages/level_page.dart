@@ -1,6 +1,6 @@
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/images.dart';
-import 'package:education_game/views/pages/pilihPermainan/pilih_permainan.dart';
+import 'package:education_game/views/pages/chooseGame/choose_game.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -18,7 +18,7 @@ class LevelPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.topLeft,
               child: GestureDetector(
-                onTap: () => Get.to(const PilihPermainan()),
+                onTap: () => Get.to(const ChooseGame()),
                 child: Image.asset(
                   AppImages.backArrow,
                 ),

@@ -5,7 +5,7 @@ import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/login/login_page.dart';
-import 'package:education_game/views/pages/pilihPermainan/pilih_permainan.dart';
+import 'package:education_game/views/pages/chooseGame/choose_game.dart';
 // import 'package:education_game/views/pages/playground_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -193,7 +193,7 @@ class _HomePage extends StatelessWidget {
                       //   Get.to(LoginPage());
                       //   break;
                       case AuthStatus.authenticated:
-                        Get.to(() => const PilihPermainan());
+                        Get.to(() => const ChooseGame());
                         break;
                       case AuthStatus.unauthenticated:
                         Get.to(() => const LoginPage());
