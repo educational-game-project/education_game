@@ -14,4 +14,12 @@ class AppImages {
   static const batang = "assets/icons/batang.png";
   static const noGreen = "assets/icons/noGreen.png";
   static const yesRed = "assets/icons/yesRed.png";
+  static const lineWood = 'assets/icons/lineWood.png';
+  static const lineDotRight = 'assets/icons/lineDotRight.png';
+  static const lineDotTopRight = 'assets/icons/lineDotTopRight.png';
+  static const lineDotBottomLeft = 'assets/icons/lineDotBottomLeft.png';
+  static const iconStart = 'assets/icons/iconStart.png';
+  static const iconExit = 'assets/icons/iconExit.png';
+  static const iconHome = 'assets/icons/iconHome.png';
+  static const iconContinue = 'assets/icons/iconContinue.png';
 }
