@@ -2,8 +2,9 @@ import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/cubit/auth/auth_cubit.dart';
 // import 'package:education_game/models/api/endpoints.dart';
 import 'package:education_game/utils/colors.dart';
+import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
-import 'package:education_game/views/widgets/appbar/general_appbar.dart';
+// import 'package:education_game/views/widgets/appbar/general_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -42,18 +43,61 @@ class _LoginPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          appBar: GeneralAppbar(),
+          // appBar: const GeneralAppbar(),
           backgroundColor: AppColors.primary500,
           body: Form(
             key: formKey,
             child: Stack(
               children: [
-                Align(
-                  alignment: Alignment.center,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: GestureDetector(
+                      onTap: () => Get.back(),
+                      child: Image.asset(
+                        AppImages.backArrow,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  // alignment: Alignment.center,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextFormField(
-                        controller: controller,
+                      Container(
+                        alignment: Alignment.center,
+                        width: 400,
+                        height: 70,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.white,
+                          boxShadow: List.filled(
+                              3,
+                              const BoxShadow(
+                                color: Color(0x3F000000),
+                                blurRadius: 6,
+                                offset: Offset(0, 4),
+                                spreadRadius: 2,
+                              ),
+                              growable: true),
+                        ),
+                        child: TextFormField(
+                          controller: controller,
+                          decoration: const InputDecoration(
+                            hintText: 'Masukkan namamu...',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                          style: const TextStyle(
+                            color: AppColors.neutral400,
+                            fontFamily: AppFonts.chubbyCrayon,
+                            fontSize: 32,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),

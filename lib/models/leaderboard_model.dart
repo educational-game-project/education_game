@@ -3,14 +3,16 @@ import 'package:education_game/models/user/user_model.dart';
 
 class LeaderboardModel extends Equatable {
   final UserModel? user;
-  final num? score;
+  final num? value;
 
-  LeaderboardModel({this.user, this.score});
+  LeaderboardModel({this.user, this.value});
 
   factory LeaderboardModel.fromJson(Map<String, dynamic> json) {
-    return LeaderboardModel(user: json['user'], score: json['score']);
+    return LeaderboardModel(
+        user: json['user'] == null ? null : UserModel.fromJson(json['user']),
+        value: json['value']);
   }
 
   @override
-  List<Object?> get props => [user, score];
+  List<Object?> get props => [user, value];
 }

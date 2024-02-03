@@ -22,4 +22,9 @@ class AppImages {
   static const iconExit = 'assets/icons/iconExit.png';
   static const iconHome = 'assets/icons/iconHome.png';
   static const iconContinue = 'assets/icons/iconContinue.png';
+  static const home = "assets/icons/home.png";
+  static const sad = "assets/icons/sad.png";
+  static const retry = "assets/icons/retry.png";
+  static const backArrow = "assets/icons/back_arrow.png";
+  static const vectorBottomLeft = "assets/icons/vector_bottom_left.png";
 }
