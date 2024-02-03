@@ -66,6 +66,15 @@ class _LoginPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const Text(
+                        'Namaku:',
+                        style: TextStyle(
+                          color: AppColors.neutral900,
+                          fontFamily: AppFonts.clapHand,
+                          fontSize: 28,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                       Container(
                         alignment: Alignment.center,
                         width: 400,
@@ -86,13 +95,14 @@ class _LoginPage extends StatelessWidget {
                         child: TextFormField(
                           controller: controller,
                           decoration: const InputDecoration(
-                            hintText: 'Masukkan namamu...',
+                            hintText: 'Ketik namamu...',
+                            fillColor: AppColors.neutral400,
                             border: OutlineInputBorder(
                               borderSide: BorderSide.none,
                             ),
                           ),
                           style: const TextStyle(
-                            color: AppColors.neutral400,
+                            color: AppColors.neutral900,
                             fontFamily: AppFonts.chubbyCrayon,
                             fontSize: 32,
                           ),

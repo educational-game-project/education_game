@@ -22,7 +22,7 @@ class LosePage extends StatelessWidget {
                 onTap: () => Get.to(const HomePage()),
                 child: Image.asset(
                   AppImages.home,
-                  height: Get.height * 0.175,
+                  height: Get.height * 0.155,
                 ),
               ),
             ),
@@ -66,8 +66,8 @@ class LosePage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                left: 75,
-                bottom: 45,
+                left: 85,
+                bottom: 50,
                 child: Image.asset(
                   AppImages.sad,
                   // width: Get.width * 0.5,

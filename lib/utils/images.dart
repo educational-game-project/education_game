@@ -19,4 +19,6 @@ class AppImages {
   static const retry = "assets/icons/retry.png";
   static const backArrow = "assets/icons/back_arrow.png";
   static const vectorBottomLeft = "assets/icons/vector_bottom_left.png";
+  static const happyGirl = "assets/icons/happy_girl.png";
+  static const happyBoy = "assets/icons/happy_boy.png";
 }
