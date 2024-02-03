@@ -1,13 +1,13 @@
-import 'package:education_game/cubit/Api/api_cubit.dart';
-import 'package:education_game/cubit/auth/auth_cubit.dart';
-import 'package:education_game/enums/api/auth_status_enum.dart';
+// import 'package:education_game/cubit/Api/api_cubit.dart';
+// import 'package:education_game/cubit/auth/auth_cubit.dart';
+// import 'package:education_game/enums/api/auth_status_enum.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
-import 'package:education_game/views/pages/login/login_page.dart';
-import 'package:education_game/views/pages/playground_page.dart';
+// import 'package:education_game/views/pages/login/login_page.dart';
+import 'package:education_game/views/pages/additional_pages/playground_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 
 class ChooseGame extends StatelessWidget {
@@ -15,7 +15,7 @@ class ChooseGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _ChooseGame();
+    return const _ChooseGame();
   }
 }
 
@@ -50,25 +50,25 @@ class _ChooseGame extends StatelessWidget {
                 children: [
                   GestureDetector(
                       onTap: () {
-                        Get.to(PlaygroundPage());
+                        Get.to(const PlaygroundPage());
                       },
                       child: Container(
                         height: Get.height * 0.38,
                         width: Get.width * 0.18,
                         decoration: BoxDecoration(
-                          color: Color(0xff2FABE0),
+                          color: const Color(0xff2FABE0),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.20),
                               spreadRadius: 0,
                               blurRadius: 6,
-                              offset:
-                                  Offset(2, 4), // changes position of shadow
+                              offset: const Offset(
+                                  2, 4), // changes position of shadow
                             ),
                           ],
                         ),
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
@@ -90,25 +90,25 @@ class _ChooseGame extends StatelessWidget {
                   ),
                   GestureDetector(
                       onTap: () {
-                        Get.to(PlaygroundPage());
+                        Get.to(const PlaygroundPage());
                       },
                       child: Container(
                         height: Get.height * 0.38,
                         width: Get.width * 0.18,
                         decoration: BoxDecoration(
-                          color: Color(0xffB764C1),
+                          color: const Color(0xffB764C1),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.20),
                               spreadRadius: 0,
                               blurRadius: 6,
-                              offset:
-                                  Offset(2, 4), // changes position of shadow
+                              offset: const Offset(
+                                  2, 4), // changes position of shadow
                             ),
                           ],
                         ),
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
@@ -130,25 +130,25 @@ class _ChooseGame extends StatelessWidget {
                   ),
                   GestureDetector(
                       onTap: () {
-                        Get.to(PlaygroundPage());
+                        Get.to(const PlaygroundPage());
                       },
                       child: Container(
                         height: Get.height * 0.38,
                         width: Get.width * 0.18,
                         decoration: BoxDecoration(
-                          color: Color(0xff4AB448),
+                          color: const Color(0xff4AB448),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.20),
                               spreadRadius: 0,
                               blurRadius: 6,
-                              offset:
-                                  Offset(2, 4), // changes position of shadow
+                              offset: const Offset(
+                                  2, 4), // changes position of shadow
                             ),
                           ],
                         ),
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(

@@ -1,5 +1,5 @@
 import 'package:education_game/cubit/auth/auth_cubit.dart';
-import 'package:education_game/views/pages/splash_screen.dart';
+import 'package:education_game/views/pages/additional_pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
