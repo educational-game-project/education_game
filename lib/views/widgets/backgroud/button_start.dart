@@ -1,4 +1,5 @@
 import 'package:education_game/utils/images.dart';
+import 'package:education_game/views/widgets/button/green_board_button.dart';
 import 'package:education_game/views/widgets/button/image_button_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -39,14 +40,27 @@ class ButtonStart extends StatelessWidget {
           bottom: 20,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20),
-            child: ImageButtonWidget(
-              isHome ? AppImages.iconStart : AppImages.iconContinue,
-              width: 120,
-              activeColor: Colors.white,
+            child: GreenBoardButton(
+              textButtonEnum:
+                  isHome ? TextButtonEnum.mulai : TextButtonEnum.lanjut,
               onTap: onTap,
             ),
           ),
         ),
+        // Positioned(
+        //   right: 20,
+        //   bottom: 20,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(bottom: 20),
+        //     child: ImageButtonWidget(
+        //       // isHome ? AppImages.iconStart : AppImages.iconContinue,
+        //       AppImages.greenBoard,
+        //       width: 120,
+        //       activeColor: Colors.white,
+        //       onTap: onTap,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

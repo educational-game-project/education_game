@@ -20,6 +20,7 @@ class AppImages {
   static const lineDotBottomLeft = 'assets/icons/lineDotBottomLeft.png';
   static const iconStart = 'assets/icons/iconStart.png';
   static const iconExit = 'assets/icons/iconExit.png';
+  static const greenBoard = 'assets/icons/greenBoard.png';
   static const iconHome = 'assets/icons/iconHome.png';
   static const iconContinue = 'assets/icons/iconContinue.png';
   static const home = "assets/icons/home.png";

@@ -4,6 +4,7 @@ import 'package:education_game/cubit/auth/auth_cubit.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
+import 'package:education_game/views/widgets/background_widget.dart';
 // import 'package:education_game/views/widgets/appbar/general_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,79 +48,84 @@ class _LoginPage extends StatelessWidget {
           backgroundColor: AppColors.primary500,
           body: Form(
             key: formKey,
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: GestureDetector(
-                      onTap: () => Get.back(),
-                      child: Image.asset(
-                        AppImages.backArrow,
-                      ),
+            child: BackgroudWidget(
+              onBack: () => Get.back(),
+              onContinue: () {
+                if (formKey.currentState!.validate()) {
+                  context.read<AuthCubit>().login(controller.text);
+                }
+              },
+              // children: [
+              //   Padding(
+              //     padding: const EdgeInsets.all(15.0),
+              //     child: Align(
+              //       alignment: Alignment.topLeft,
+              //       child: GestureDetector(
+              //         onTap: () => Get.back(),
+              //         child: Image.asset(
+              //           AppImages.backArrow,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              //   Positioned.fill(
+              // alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    width: 400,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.white,
+                      boxShadow: List.filled(
+                          3,
+                          const BoxShadow(
+                            color: Color(0x3F000000),
+                            blurRadius: 6,
+                            offset: Offset(0, 4),
+                            spreadRadius: 2,
+                          ),
+                          growable: true),
                     ),
-                  ),
-                ),
-                Positioned.fill(
-                  // alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        width: 400,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.white,
-                          boxShadow: List.filled(
-                              3,
-                              const BoxShadow(
-                                color: Color(0x3F000000),
-                                blurRadius: 6,
-                                offset: Offset(0, 4),
-                                spreadRadius: 2,
-                              ),
-                              growable: true),
-                        ),
-                        child: TextFormField(
-                          controller: controller,
-                          decoration: const InputDecoration(
-                            hintText: 'Masukkan namamu...',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: AppColors.neutral400,
-                            fontFamily: AppFonts.chubbyCrayon,
-                            fontSize: 32,
-                          ),
-                          textAlign: TextAlign.center,
+                    child: TextFormField(
+                      controller: controller,
+                      decoration: const InputDecoration(
+                        hintText: 'Masukkan namamu...',
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          context.read<AuthCubit>().login(controller.text);
-                        }
-                      },
-                      child: Image.asset(
-                        AppImages.kananBawah,
-                        height: size.height * 0.25,
+                      style: const TextStyle(
+                        color: AppColors.neutral400,
+                        fontFamily: AppFonts.chubbyCrayon,
+                        fontSize: 32,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
+              // ),
+              // Align(
+              //   alignment: Alignment.bottomRight,
+              //   child: Align(
+              //     alignment: Alignment.bottomRight,
+              //     child: GestureDetector(
+              //       onTap: () {
+              //         if (formKey.currentState!.validate()) {
+              //           context.read<AuthCubit>().login(controller.text);
+              //         }
+              //       },
+              //       child: Image.asset(
+              //         AppImages.kananBawah,
+              //         height: size.height * 0.25,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ),
           ),
         );

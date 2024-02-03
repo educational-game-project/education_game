@@ -44,6 +44,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   dio: ^5.4.0
   flutter_hooks: ^0.20.4
+  velocity_x: ^4.1.0
 
 dev_dependencies:
   flutter_test:
