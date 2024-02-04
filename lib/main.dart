@@ -1,4 +1,5 @@
 import 'package:education_game/cubit/auth/auth_cubit.dart';
+import 'package:education_game/route/app_route.dart';
 import 'package:education_game/views/pages/additional_pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +19,7 @@ class Providers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit()..initialAuth(),
+      create: (context) => AuthCubit(),
       child: const App(),
     );
   }
@@ -30,7 +31,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: '/',
       title: 'Game Education',
+      getPages: AppRoute.pageRoute,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

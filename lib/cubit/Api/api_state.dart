@@ -29,3 +29,9 @@ class LoginSuccess extends ApiState {
   final LoginResponses responses;
   LoginSuccess(this.params, this.responses);
 }
+
+class RefreshTokensSuccess extends ApiState {
+  final RefreshTokenParams params;
+  final RefreshTokensResponses responses;
+  RefreshTokensSuccess(this.params, this.responses);
+}

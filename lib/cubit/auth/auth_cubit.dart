@@ -6,6 +6,7 @@ import 'package:education_game/enums/api/auth_status_enum.dart';
 import 'package:education_game/models/token_model.dart';
 import 'package:education_game/models/user/user_model.dart';
 import 'package:education_game/repositories/params/login_params.dart';
+import 'package:education_game/repositories/params/refresh_tokens_params.dart';
 import 'package:education_game/views/pages/home/home_page.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -18,18 +19,24 @@ class AuthCubit extends Cubit<AuthState> {
   StreamSubscription? apiSubs;
 
   AuthCubit() : super(AuthState.unauthenticated()) {
-    apiSubs = _apiCubit.stream.listen((event) {
+    apiSubs = _apiCubit.stream.listen((event) async {
       emit(state.copyWith(apiState: event));
 
       if (event is LoginSuccess) {
-        if (event.responses.baseResponse.status == 'success') {
-          debugPrint('tokens ${event.responses.tokens}');
-          emit(AuthState.authenticated(
-              tokens: event.responses.tokens, user: event.responses.user));
-          debugPrint('tokens ${state.tokens}');
-          state.tokens?.save();
-          Get.offAll(HomePage());
-        }
+        debugPrint('LOGIN SUCCESS  ${event.responses.user}');
+        emit(AuthState.authenticated(
+            tokens: event.responses.tokens, user: event.responses.user));
+        await state.tokens?.save();
+        debugPrint(
+            'tokens saved ${(await state.tokens?.read())?.accessToken.toString()}');
+        ;
+        Get.offAll(HomePage());
+      }
+
+      if (event is RefreshTokensSuccess) {
+        debugPrint('REFRESH TOKENS ${event.responses.tokens}');
+        event.responses.tokens.save();
+        emit(AuthState.authenticated(tokens: event.responses.tokens));
       }
     });
 
@@ -38,10 +45,13 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> initialAuth() async {
     TokensModel tokens = await TokensModel().read();
-    switch (tokens.isAuthenticated) {
-      case true:
-        emit(state.copyWith(tokens: tokens));
-        break;
+    debugPrint('is auth : ${tokens.isAuthenticated.toString()}');
+    if (tokens.isAuthenticated) {
+      emit(AuthState.authenticated(tokens: tokens));
+    }
+    if (tokens.isRefreshTokenActive) {
+      _apiCubit
+          .refreshTokens(RefreshTokenParams(refreshToken: tokens.refreshToken));
     }
   }
 

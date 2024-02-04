@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:education_game/enums/api/fetcher_enum.dart';
 import 'package:education_game/models/api/base_response.dart';
 import 'package:education_game/models/api/endpoints.dart';
+import 'package:education_game/models/api/server_exception.dart';
 import 'package:education_game/models/token_model.dart';
+import 'package:flutter/material.dart';
 
 class BaseFetcher {
   final dio = Dio();
-  final token = TokensModel();
+  TokensModel? token;
 
   BaseFetcher();
 
@@ -60,11 +62,13 @@ class BaseFetcher {
     Object? data,
   }) async {
     try {
-      Options options = Options(headers: {
-        if (token.accoessToken != '')
-          'Authorization': 'Bearer ${token.accoessToken}',
+      token = await TokensModel().read();
+
+      var options = Options(headers: {
+        if (token!.isAuthenticated)
+          'Authorization': 'Bearer ${token?.accessToken}',
       });
-      Response response;
+      Response<Map<String, dynamic>> response;
       switch (type) {
         case FetcherEnum.get:
           response = await dio.get(
@@ -95,9 +99,21 @@ class BaseFetcher {
           break;
       }
 
-      return BaseResponse.handleResp(response: response);
+      final baseResponse = BaseResponse.fromJson(response.data ?? {});
+
+      debugPrint('response raw ${baseResponse.data}');
+
+      if (baseResponse.statusCode == 200 || baseResponse.statusCode == 201) {
+        return baseResponse;
+      } else {
+        throw ServerException.fromResponse(response);
+      }
     } on DioException catch (error) {
-      return BaseResponse.handleError(error.error);
+      if (error.response != null) {
+        throw ServerException.fromResponse(error.response!);
+      } else {
+        rethrow;
+      }
     }
   }
 }
