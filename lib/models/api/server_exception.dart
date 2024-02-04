@@ -13,13 +13,22 @@ class ServerException implements Exception {
     this.baseResponse,
   });
 
+  BaseResponse get ErrorBaseResponse {
+    return baseResponse ??
+        BaseResponse(
+          message: message,
+          statusCode: code,
+        );
+  }
+
   factory ServerException.fromResponse(Response response) {
     final resp = ServerException(
-      baseResponse: BaseResponse.fromResponse(response),
+      baseResponse: BaseResponse.fromJson(response.data),
       code: response.statusCode,
       message: response.statusMessage,
     );
-    debugPrint('Info : ${resp.message} ${resp.code}');
+    debugPrint(
+        'ERROR ${resp.baseResponse?.statusCode} ${resp.baseResponse?.message}');
     return resp;
   }
 }

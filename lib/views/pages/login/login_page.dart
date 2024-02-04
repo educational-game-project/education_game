@@ -25,8 +25,6 @@ class _LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return BlocConsumer<AuthCubit, AuthState>(
       listenWhen: (previous, current) =>
           (previous.tokens?.isAuthenticated ?? false) == false &&

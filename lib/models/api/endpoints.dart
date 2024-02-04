@@ -5,6 +5,7 @@ class EndPoints {
   // auth
   static const loginUrl = '/login';
   static const logoutUrl = '/logout';
+  static const refreshTokenUrl = '/refresh-token';
 
   // game
   static const gameUrl = '/games';

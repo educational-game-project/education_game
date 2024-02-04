@@ -1,70 +1,147 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 enum TokenEnum {
-  accoessToken,
+  accessToken,
+  accessTokenExpires,
   refreshToken,
+  refreshTokenExpires,
 }
 
 class TokensModel extends Equatable {
-  final String accoessToken;
+  final String accessToken;
   final String refreshToken;
+  final DateTime? accessTokenExpires;
+  final DateTime? refreshTokenExpires;
   final _storage = const FlutterSecureStorage();
 
+  static int get accessTokenActiveSession => 1;
+  static int get refreshTokenActiveSession => 3;
+
   TokensModel({
-    this.accoessToken = '',
+    this.accessToken = '',
     this.refreshToken = '',
+    this.accessTokenExpires,
+    this.refreshTokenExpires,
   });
 
   factory TokensModel.fromJson(Map<String, dynamic> json) {
     return TokensModel(
-      accoessToken: json['accessToken'],
+      accessToken: json['accessToken'],
       refreshToken: json['refreshToken'],
     );
   }
 
   Future<TokensModel> read() async {
-    final accoessToken =
-        await _storage.read(key: TokenEnum.accoessToken.name) ?? '';
+    final accessToken =
+        await _storage.read(key: TokenEnum.accessToken.name) ?? '';
     final refreshToken =
         await _storage.read(key: TokenEnum.refreshToken.name) ?? '';
-    return TokensModel(refreshToken: refreshToken, accoessToken: accoessToken);
+    final accessTokenExpires =
+        await _storage.read(key: TokenEnum.accessTokenExpires.name) ?? '';
+    final refreshTokenExpires =
+        await _storage.read(key: TokenEnum.refreshTokenExpires.name) ?? '';
+    return TokensModel(
+      refreshToken: refreshToken,
+      accessToken: accessToken,
+      accessTokenExpires: DateTime.tryParse(accessTokenExpires),
+      refreshTokenExpires: DateTime.tryParse(refreshTokenExpires),
+    );
   }
 
-  void save() {
-    _storage.write(
-      key: TokenEnum.accoessToken.name,
-      value: accoessToken,
+  Future<void> save() async {
+    debugPrint('saving token ${accessToken} ${refreshToken}');
+    await _storage.write(
+      key: TokenEnum.accessToken.name,
+      value: accessToken,
     );
-    _storage.write(
+    await _storage.write(
       key: TokenEnum.refreshToken.name,
       value: refreshToken,
+    );
+    await _storage.write(
+      key: TokenEnum.accessTokenExpires.name,
+      value: DateTime.now()
+          .add(Duration(days: accessTokenActiveSession))
+          .toIso8601String(),
+    );
+    await _storage.write(
+      key: TokenEnum.refreshTokenExpires.name,
+      value: DateTime.now()
+          .add(Duration(days: refreshTokenActiveSession))
+          .toIso8601String(),
     );
   }
 
   void remove() {
     _storage.delete(
-      key: TokenEnum.accoessToken.name,
+      key: TokenEnum.accessToken.name,
     );
     _storage.delete(
       key: TokenEnum.refreshToken.name,
     );
+    _storage.delete(
+      key: TokenEnum.accessTokenExpires.name,
+    );
+    _storage.delete(
+      key: TokenEnum.refreshTokenExpires.name,
+    );
   }
 
   @override
-  List<Object?> get props => [accoessToken, refreshToken];
+  List<Object?> get props =>
+      [accessToken, refreshToken, accessTokenExpires, refreshTokenExpires];
+
+  bool get isAccessTokenActive {
+    if (accessToken == '') {
+      return false;
+    }
+
+    if (accessTokenExpires == null) {
+      return false;
+    }
+
+    if (accessTokenExpires!.difference(DateTime.now()).inDays >
+        accessTokenActiveSession) {
+      return false;
+    }
+
+    return true;
+  }
+
+  bool get isRefreshTokenActive {
+    if (refreshToken == '') {
+      return false;
+    }
+
+    if (refreshTokenExpires == null) {
+      return false;
+    }
+
+    if (refreshTokenExpires!.difference(DateTime.now()).inDays >
+        refreshTokenActiveSession) {
+      return false;
+    }
+
+    return true;
+  }
 
   bool get isAuthenticated {
-    return accoessToken != '' && refreshToken != '';
+    return isRefreshTokenActive && isAccessTokenActive;
   }
 
   TokensModel copyWith({
-    String? accoessToken,
+    String? accessToken,
     String? refreshToken,
+    DateTime? accessTokenExpires,
+    DateTime? refreshTokenExpires,
   }) {
     return TokensModel(
-      accoessToken: accoessToken ?? this.accoessToken,
+      accessToken: accessToken ?? this.accessToken,
       refreshToken: refreshToken ?? this.refreshToken,
+      accessTokenExpires: accessTokenExpires ?? this.accessTokenExpires,
+      refreshTokenExpires: refreshTokenExpires ?? this.refreshTokenExpires,
     );
   }
 }

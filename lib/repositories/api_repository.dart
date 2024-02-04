@@ -4,7 +4,9 @@ import 'package:education_game/models/api/base_response.dart';
 import 'package:education_game/models/api/endpoints.dart';
 import 'package:education_game/models/api/server_exception.dart';
 import 'package:education_game/repositories/params/login_params.dart';
+import 'package:education_game/repositories/params/refresh_tokens_params.dart';
 import 'package:education_game/repositories/responses/login_responses.dart';
+import 'package:education_game/repositories/responses/refresh_tokens_responses.dart';
 
 class ApiRepository {
   final BaseFetcher _fetcher = BaseFetcher();
@@ -17,18 +19,29 @@ class ApiRepository {
       );
       return Right(LoginResponses(resp));
     } on ServerException catch (e) {
-      return Left(BaseResponse(message: e.message));
+      return Left(e.ErrorBaseResponse);
     }
   }
 
-  Future<BaseResponse> logout() async {
+  Future<Either<BaseResponse, RefreshTokensResponses>> refreshTokens(
+      RefreshTokenParams params) async {
     try {
-      final resp = await _fetcher.post(
-        EndPoints.logoutUrl,
-      );
-      return BaseResponse(message: resp.message);
+      final resp =
+          await _fetcher.post(EndPoints.refreshTokenUrl, data: params.toJson);
+      return Right(RefreshTokensResponses(resp));
     } on ServerException catch (e) {
-      return BaseResponse(message: e.message);
+      return Left(e.ErrorBaseResponse);
     }
   }
+
+  // Future<BaseResponse> logout() async {
+  //   try {
+  //     final resp = await _fetcher.post(
+  //       EndPoints.logoutUrl,
+  //     );
+  //     return BaseResponse(message: resp.message);
+  //   } on ServerException catch (e) {
+  //     return Left(e.ErrorBaseResponse);
+  //   }
+  // }
 }

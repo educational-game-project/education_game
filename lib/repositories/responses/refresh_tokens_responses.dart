@@ -2,25 +2,29 @@ import 'package:education_game/models/api/base_response.dart';
 import 'package:education_game/models/token_model.dart';
 import 'package:education_game/models/user/user_model.dart';
 import 'package:equatable/equatable.dart';
-// import 'package:flutter/material.dart';
 
-class LoginResponses extends Equatable {
+class RefreshTokensResponses extends Equatable {
   final BaseResponse baseResponse;
 
-  const LoginResponses(this.baseResponse);
+  RefreshTokensResponses(this.baseResponse);
 
-  UserModel get user {
-    return baseResponse.data == null
-        ? UserModel()
-        : UserModel.fromJson(baseResponse.data['user']);
+  bool get isEmpty {
+    return baseResponse.data == null;
   }
 
   TokensModel get tokens {
-    return baseResponse.data == null
+    return isEmpty
         ? TokensModel()
         : TokensModel.fromJson(baseResponse.data['tokens']);
   }
 
+  UserModel get user {
+    return isEmpty
+        ? UserModel()
+        : UserModel.fromJson(baseResponse.data['user']);
+  }
+
   @override
+  // TODO: implement props
   List<Object?> get props => [baseResponse];
 }
