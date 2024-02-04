@@ -1,7 +1,6 @@
 import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/cubit/auth/auth_cubit.dart';
 import 'package:education_game/enums/api/auth_status_enum.dart';
-import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/chooseGame/choose_game.dart';
 import 'package:education_game/views/pages/login/login_page.dart';
@@ -49,15 +48,12 @@ class _HomePage extends StatelessWidget {
           }
         }
 
-        return Scaffold(
-          backgroundColor: AppColors.primary500,
-          body: BackgroudWidget(
-            onStart: onStart,
-            onExit: onExit,
-            child: Image.asset(
-              AppImages.center,
-              width: size.width * 0.55,
-            ),
+        return BackgroudWidget(
+          onStart: onStart,
+          onExit: onExit,
+          child: Image.asset(
+            AppImages.center,
+            width: size.width * 0.55,
           ),
         );
       },
