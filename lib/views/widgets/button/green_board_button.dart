@@ -29,25 +29,47 @@ class GreenBoardButton extends StatelessWidget {
     super.key,
     this.onTap,
     this.textButtonEnum = TextButtonEnum.lanjut,
+    this.height = 100,
+    this.width = 120,
+    this.showWood = false,
   });
   final Function()? onTap;
   final TextButtonEnum textButtonEnum;
+  final double height;
+  final double width;
+  final bool showWood;
 
   @override
   Widget build(BuildContext context) {
-    return ImageButtonWidget(
-      AppImages.greenBoard,
-      width: 120,
-      activeColor: Colors.white,
-      onTap: onTap,
-      content: Positioned.fill(
-        child: Center(
-          child: FittedBox(
-            child: TextWidget(
-              text: textButtonEnum.getTextButton,
-            ).px(20).pOnly(bottom: 4).rotate(355),
+    return SizedBox(
+      height: showWood ? height : null,
+      width: showWood ? width : null,
+      child: Stack(
+        children: [
+          if (showWood)
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Image.asset(
+                AppImages.lineWood,
+                height: height * 0.8,
+              ),
+            ),
+          ImageButtonWidget(
+            AppImages.greenBoard,
+            width: width,
+            activeColor: Colors.white,
+            onTap: onTap,
+            content: Positioned.fill(
+              child: Center(
+                child: FittedBox(
+                  child: TextWidget(
+                    text: textButtonEnum.getTextButton,
+                  ).px(20).pOnly(bottom: 4).rotate(355),
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
