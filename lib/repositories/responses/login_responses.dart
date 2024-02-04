@@ -11,13 +11,13 @@ class LoginResponses extends Equatable {
 
   UserModel get user {
     return baseResponse.data == null
-        ? UserModel()
+        ? const UserModel()
         : UserModel.fromJson(baseResponse.data['user']);
   }
 
   TokensModel get tokens {
     return baseResponse.data == null
-        ? TokensModel()
+        ? const TokensModel()
         : TokensModel.fromJson(baseResponse.data['tokens']);
   }
 

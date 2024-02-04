@@ -12,7 +12,7 @@ class MediaModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  MediaModel({
+  const MediaModel({
     this.id,
     this.originalName,
     this.fileName,

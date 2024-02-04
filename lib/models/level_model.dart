@@ -14,7 +14,7 @@ class LevelModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  LevelModel({
+  const LevelModel({
     this.id,
     this.current,
     this.max,

@@ -11,14 +11,15 @@ class ApiInitial extends ApiState {}
 
 class ApiError extends ApiState {
   final BaseResponse data;
-  ApiError(this.data);
+
+  const ApiError(this.data);
 }
 
 class ApiLoading<T> extends ApiState {
   final ApiLoadingEnum? type;
   final T? additional;
 
-  ApiLoading({
+  const ApiLoading({
     this.type,
     this.additional,
   });
@@ -27,11 +28,11 @@ class ApiLoading<T> extends ApiState {
 class LoginSuccess extends ApiState {
   final LoginParams params;
   final LoginResponses responses;
-  LoginSuccess(this.params, this.responses);
+  const LoginSuccess(this.params, this.responses);
 }
 
 class RefreshTokensSuccess extends ApiState {
   final RefreshTokenParams params;
   final RefreshTokensResponses responses;
-  RefreshTokensSuccess(this.params, this.responses);
+  const RefreshTokensSuccess(this.params, this.responses);
 }

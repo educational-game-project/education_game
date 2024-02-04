@@ -19,7 +19,7 @@ class TokensModel extends Equatable {
   static int get accessTokenActiveSession => 1;
   static int get refreshTokenActiveSession => 3;
 
-  TokensModel({
+  const TokensModel({
     this.accessToken = '',
     this.refreshToken = '',
     this.accessTokenExpires,

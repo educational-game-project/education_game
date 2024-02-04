@@ -19,7 +19,7 @@ class ApiRepository {
       );
       return Right(LoginResponses(resp));
     } on ServerException catch (e) {
-      return Left(e.ErrorBaseResponse);
+      return Left(e.errorBaseResponse);
     }
   }
 
@@ -30,7 +30,7 @@ class ApiRepository {
           await _fetcher.post(EndPoints.refreshTokenUrl, data: params.toJson);
       return Right(RefreshTokensResponses(resp));
     } on ServerException catch (e) {
-      return Left(e.ErrorBaseResponse);
+      return Left(e.errorBaseResponse);
     }
   }
 

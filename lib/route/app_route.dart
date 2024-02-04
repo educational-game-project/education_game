@@ -6,7 +6,7 @@ class AppRoute {
   static get pageRoute => [
         GetPage(
           name: AppRouteName.home,
-          page: () => HomePage(),
+          page: () => const HomePage(),
         ),
       ];
 }

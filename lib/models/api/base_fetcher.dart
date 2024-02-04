@@ -62,7 +62,7 @@ class BaseFetcher {
     Object? data,
   }) async {
     try {
-      token = await TokensModel().read();
+      token = await const TokensModel().read();
 
       var options = Options(headers: {
         if (token!.isAuthenticated)

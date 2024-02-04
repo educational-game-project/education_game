@@ -5,7 +5,7 @@ class LeaderboardModel extends Equatable {
   final UserModel? user;
   final num? value;
 
-  LeaderboardModel({this.user, this.value});
+  const LeaderboardModel({this.user, this.value});
 
   factory LeaderboardModel.fromJson(Map<String, dynamic> json) {
     return LeaderboardModel(

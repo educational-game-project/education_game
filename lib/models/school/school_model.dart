@@ -12,7 +12,7 @@ class SchoolModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  SchoolModel({
+  const SchoolModel({
     this.id,
     this.name,
     this.address,

@@ -6,7 +6,7 @@ import 'package:equatable/equatable.dart';
 class RefreshTokensResponses extends Equatable {
   final BaseResponse baseResponse;
 
-  RefreshTokensResponses(this.baseResponse);
+  const RefreshTokensResponses(this.baseResponse);
 
   bool get isEmpty {
     return baseResponse.data == null;
@@ -14,13 +14,13 @@ class RefreshTokensResponses extends Equatable {
 
   TokensModel get tokens {
     return isEmpty
-        ? TokensModel()
+        ? const TokensModel()
         : TokensModel.fromJson(baseResponse.data['tokens']);
   }
 
   UserModel get user {
     return isEmpty
-        ? UserModel()
+        ? const UserModel()
         : UserModel.fromJson(baseResponse.data['user']);
   }
 
