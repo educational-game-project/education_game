@@ -7,7 +7,32 @@ import 'package:education_game/models/token_model.dart';
 import 'package:flutter/material.dart';
 
 class BaseFetcher {
-  final dio = Dio();
+  static Dio _setupDio() {
+    BaseOptions options = BaseOptions(
+      // baseUrl: FlavorConfig.instance.variables["baseUrl"],
+      baseUrl: EndPoints.host,
+      connectTimeout: const Duration(minutes: 1),
+      receiveTimeout: const Duration(minutes: 1),
+      sendTimeout: const Duration(minutes: 1),
+      // headers: {
+      //   'accept': 'application/json',
+      //   'X-Localization': lang,
+      // },
+    );
+
+    Dio dio = Dio(options);
+
+    dio.interceptors.add(LogInterceptor(
+      responseBody: true,
+      error: true,
+      request: true,
+      requestBody: true,
+    ));
+
+    return dio;
+  }
+
+  final dio = _setupDio();
   TokensModel? token;
 
   BaseFetcher();
@@ -72,27 +97,27 @@ class BaseFetcher {
       switch (type) {
         case FetcherEnum.get:
           response = await dio.get(
-            '${EndPoints.host}$url',
+            url,
             options: options,
           );
           break;
         case FetcherEnum.post:
           response = await dio.post(
-            '${EndPoints.host}$url',
+            url,
             options: options,
             data: data,
           );
           break;
         case FetcherEnum.put:
           response = await dio.put(
-            '${EndPoints.host}$url',
+            url,
             options: options,
             data: data,
           );
           break;
         case FetcherEnum.delete:
           response = await dio.delete(
-            '${EndPoints.host}$url',
+            url,
             options: options,
             data: data,
           );
