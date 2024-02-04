@@ -4,7 +4,6 @@ import 'package:education_game/models/api/base_response.dart';
 import 'package:education_game/models/api/endpoints.dart';
 import 'package:education_game/models/api/server_exception.dart';
 import 'package:education_game/models/token_model.dart';
-import 'package:flutter/material.dart';
 
 class BaseFetcher {
   static Dio _setupDio() {
@@ -14,10 +13,7 @@ class BaseFetcher {
       connectTimeout: const Duration(minutes: 1),
       receiveTimeout: const Duration(minutes: 1),
       sendTimeout: const Duration(minutes: 1),
-      // headers: {
-      //   'accept': 'application/json',
-      //   'X-Localization': lang,
-      // },
+      // headers: {}
     );
 
     Dio dio = Dio(options);
@@ -125,8 +121,6 @@ class BaseFetcher {
       }
 
       final baseResponse = BaseResponse.fromJson(response.data ?? {});
-
-      debugPrint('response raw ${baseResponse.data}');
 
       if (baseResponse.statusCode == 200 || baseResponse.statusCode == 201) {
         return baseResponse;
