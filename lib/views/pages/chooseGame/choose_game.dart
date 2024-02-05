@@ -21,7 +21,7 @@ class _ChooseGame extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BackgroudWidget(
       onBack: () => Get.back(),
-      title: 'Pilih Permainan',
+      // title: 'Pilih Permainan',
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

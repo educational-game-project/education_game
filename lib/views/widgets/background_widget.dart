@@ -89,7 +89,7 @@ class BackgroudWidget extends StatelessWidget {
     Widget backButton() {
       return Positioned(
         left: 20,
-        top: size.height * 0.1,
+        top: size.height * 0.04,
         child: ImageButtonWidget(
           AppImages.tombolKembali,
           activeColor: Colors.white,
