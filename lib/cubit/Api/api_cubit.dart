@@ -1,6 +1,4 @@
 // import 'dart:js_util';
-
-import 'package:bloc/bloc.dart';
 import 'package:education_game/cubit/Api/api_helper.dart';
 import 'package:education_game/models/api/base_response.dart';
 import 'package:education_game/repositories/api_repository.dart';
@@ -9,6 +7,7 @@ import 'package:education_game/repositories/params/refresh_tokens_params.dart';
 import 'package:education_game/repositories/responses/login_responses.dart';
 import 'package:education_game/repositories/responses/refresh_tokens_responses.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'api_state.dart';
 
@@ -18,7 +17,7 @@ class ApiCubit extends Cubit<ApiState> {
   ApiCubit() : super(ApiInitial());
 
   Future<void> login(LoginParams params) async {
-    emit(ApiLoading());
+    emit(const ApiLoading());
 
     final resp = await repository.login(params);
     resp.fold(
@@ -30,7 +29,7 @@ class ApiCubit extends Cubit<ApiState> {
   }
 
   Future<void> refreshTokens(RefreshTokenParams params) async {
-    emit(ApiLoading());
+    emit(const ApiLoading());
 
     final resp = await repository.refreshTokens(params);
     resp.fold(

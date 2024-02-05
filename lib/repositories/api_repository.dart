@@ -17,6 +17,15 @@ class ApiRepository {
       final resp = await api;
       return Right(resp as T);
     } on ServerException catch (e) {
+      return Left(e.errorBaseResponse);
+    }
+  }
+
+  Future<Either<BaseResponse, LoginResponses>> login(LoginParams params) async {
+    try {
+      final resp = await api;
+      return Right(resp as T);
+    } on ServerException catch (e) {
       return Left(e.ErrorBaseResponse);
     }
   }

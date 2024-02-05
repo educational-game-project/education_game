@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class LoginParams extends Equatable {
   final String name;
 
-  LoginParams({
+  const LoginParams({
     required this.name,
   });
 

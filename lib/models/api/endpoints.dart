@@ -1,6 +1,6 @@
 class EndPoints {
   // host
-  static const host = 'http://34.87.161.233:3000';
+  static const host = 'https://be-game.cyclic.app';
 
   // auth
   static const loginUrl = '/login';

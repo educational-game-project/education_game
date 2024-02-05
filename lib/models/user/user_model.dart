@@ -14,7 +14,7 @@ class UserModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  UserModel({
+  const UserModel({
     this.id,
     this.name,
     this.role,

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/enums/api/auth_status_enum.dart';
 import 'package:education_game/models/token_model.dart';
@@ -10,6 +9,7 @@ import 'package:education_game/repositories/params/refresh_tokens_params.dart';
 import 'package:education_game/views/pages/home/home_page.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 part 'auth_state.dart';
@@ -29,8 +29,8 @@ class AuthCubit extends Cubit<AuthState> {
         await state.tokens?.save();
         debugPrint(
             'tokens saved ${(await state.tokens?.read())?.accessToken.toString()}');
-
-        Get.offAll(HomePage());
+        Get.offAll(const HomePage());
+        Get.snackbar('Login Success', 'Welcome ${event.responses.user.name}');
       }
 
       if (event is RefreshTokensSuccess) {
@@ -44,7 +44,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> initialAuth() async {
-    TokensModel tokens = await TokensModel().read();
+    TokensModel tokens = await const TokensModel().read();
     debugPrint('is auth : ${tokens.isAuthenticated.toString()}');
     if (tokens.isAuthenticated) {
       emit(AuthState.authenticated(tokens: tokens));

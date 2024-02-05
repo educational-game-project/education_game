@@ -15,7 +15,7 @@ class GameModel extends Equatable {
   final DateTime? updatedAt;
   final List<MediaModel>? images;
 
-  GameModel({
+  const GameModel({
     this.id,
     this.name,
     this.author,

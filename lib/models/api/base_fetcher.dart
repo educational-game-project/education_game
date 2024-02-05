@@ -4,10 +4,31 @@ import 'package:education_game/models/api/base_response.dart';
 import 'package:education_game/models/api/endpoints.dart';
 import 'package:education_game/models/api/server_exception.dart';
 import 'package:education_game/models/token_model.dart';
-import 'package:flutter/material.dart';
 
 class BaseFetcher {
-  final dio = Dio();
+  static Dio _setupDio() {
+    BaseOptions options = BaseOptions(
+      // baseUrl: FlavorConfig.instance.variables["baseUrl"],
+      baseUrl: EndPoints.host,
+      connectTimeout: const Duration(minutes: 1),
+      receiveTimeout: const Duration(minutes: 1),
+      sendTimeout: const Duration(minutes: 1),
+      // headers: {}
+    );
+
+    Dio dio = Dio(options);
+
+    dio.interceptors.add(LogInterceptor(
+      responseBody: true,
+      error: true,
+      request: true,
+      requestBody: true,
+    ));
+
+    return dio;
+  }
+
+  final dio = _setupDio();
   TokensModel? token;
 
   BaseFetcher();
@@ -62,7 +83,7 @@ class BaseFetcher {
     Object? data,
   }) async {
     try {
-      token = await TokensModel().read();
+      token = await const TokensModel().read();
 
       var options = Options(headers: {
         if (token!.isAuthenticated)
@@ -72,27 +93,27 @@ class BaseFetcher {
       switch (type) {
         case FetcherEnum.get:
           response = await dio.get(
-            '${EndPoints.host}$url',
+            url,
             options: options,
           );
           break;
         case FetcherEnum.post:
           response = await dio.post(
-            '${EndPoints.host}$url',
+            url,
             options: options,
             data: data,
           );
           break;
         case FetcherEnum.put:
           response = await dio.put(
-            '${EndPoints.host}$url',
+            url,
             options: options,
             data: data,
           );
           break;
         case FetcherEnum.delete:
           response = await dio.delete(
-            '${EndPoints.host}$url',
+            url,
             options: options,
             data: data,
           );
@@ -100,8 +121,6 @@ class BaseFetcher {
       }
 
       final baseResponse = BaseResponse.fromJson(response.data ?? {});
-
-      debugPrint('response raw ${baseResponse.data}');
 
       if (baseResponse.statusCode == 200 || baseResponse.statusCode == 201) {
         return baseResponse;

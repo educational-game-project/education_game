@@ -7,7 +7,7 @@ class AuthState extends Equatable {
   final TokensModel? tokens;
   final UserModel? user;
 
-  AuthState._({
+  const AuthState._({
     required this.status,
     this.apiState,
     this.tokens,
@@ -15,7 +15,7 @@ class AuthState extends Equatable {
   });
 
   factory AuthState.unauthenticated() {
-    return AuthState._(
+    return const AuthState._(
       status: AuthStatus.unauthenticated,
     );
   }

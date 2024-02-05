@@ -13,7 +13,7 @@ class ServerException implements Exception {
     this.baseResponse,
   });
 
-  BaseResponse get ErrorBaseResponse {
+  BaseResponse get errorBaseResponse {
     return baseResponse ??
         BaseResponse(
           message: message,
