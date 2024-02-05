@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
         await state.tokens?.save();
         debugPrint(
             'tokens saved ${(await state.tokens?.read())?.accessToken.toString()}');
-        ;
+
         Get.offAll(HomePage());
       }
 

@@ -38,6 +38,9 @@ class _LoginPage extends StatelessWidget {
           Get.snackbar('${data.responses.baseResponse.status}',
               '${data.responses.baseResponse.message ?? ''} ${data.responses.tokens}');
         }
+        if (data is ApiError) {
+          Get.snackbar('Error', '${data.data.message}');
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -75,6 +78,15 @@ class _LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (state.apiState is ApiLoading)
+                  Positioned.fill(
+                      child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    alignment: Alignment.center,
+                    color: Colors.black.withOpacity(0.5),
+                    child: Text('loading'),
+                  ))
               ],
             ),
           ),
