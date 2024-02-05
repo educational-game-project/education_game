@@ -11,33 +11,27 @@ import 'package:education_game/repositories/responses/refresh_tokens_responses.d
 class ApiRepository {
   final BaseFetcher _fetcher = BaseFetcher();
 
-  Future<Either<BaseResponse, T>> _handler<T>(
-      {required Future<BaseResponse> api}) async {
+  Future<Either<BaseResponse, LoginResponses>> login(LoginParams params) async {
     try {
-      final resp = await api;
-      return Right(resp as T);
+      final resp = await _fetcher.post(
+        EndPoints.loginUrl,
+        data: params.toJson,
+      );
+      return Right(LoginResponses(resp));
     } on ServerException catch (e) {
       return Left(e.errorBaseResponse);
     }
   }
 
-  Future<Either<BaseResponse, LoginResponses>> login(LoginParams params) async {
-    return _handler<LoginResponses>(
-      api: _fetcher.post(
-        EndPoints.loginUrl,
-        data: params.toJson,
-      ),
-    );
-  }
-
   Future<Either<BaseResponse, RefreshTokensResponses>> refreshTokens(
       RefreshTokenParams params) async {
-    return _handler(
-      api: _fetcher.post(
-        EndPoints.refreshTokenUrl,
-        data: params.toJson,
-      ),
-    );
+    try {
+      final resp =
+          await _fetcher.post(EndPoints.refreshTokenUrl, data: params.toJson);
+      return Right(RefreshTokensResponses(resp));
+    } on ServerException catch (e) {
+      return Left(e.errorBaseResponse);
+    }
   }
 
   // Future<BaseResponse> logout() async {
