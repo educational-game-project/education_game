@@ -35,6 +35,9 @@ class _LoginPage extends StatelessWidget {
           Get.snackbar('${data.responses.baseResponse.status}',
               '${data.responses.baseResponse.message ?? ''} ${data.responses.tokens}');
         }
+        if (data is ApiError) {
+          Get.snackbar('Error', '${data.data.message}');
+        }
       },
       builder: (context, state) {
         return Scaffold(
