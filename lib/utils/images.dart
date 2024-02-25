@@ -48,4 +48,8 @@ class AppImages {
   static const kucing = "assets/icons/Kucing.png";
   static const anjing = "assets/icons/Anjing.png";
   static const kelinci = "assets/icons/Kelinci.png";
+  static const kuda =
+      "https://res.cloudinary.com/sningratt/image/upload/v1708869094/assets/kuda.png";
+  static const zebra =
+      "https://res.cloudinary.com/sningratt/image/upload/v1708869094/assets/zebra.png";
 }
