@@ -1,5 +1,6 @@
 import 'package:education_game/utils/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum FontsEnum {
   chubbyCrayon,
@@ -25,6 +26,9 @@ class TextWidget extends StatelessWidget {
     this.color,
     this.fontWeight,
     this.fontsEnum,
+    this.overflow,
+    this.maxLines,
+    this.textAlign,
   });
 
   final String text;
@@ -32,18 +36,23 @@ class TextWidget extends StatelessWidget {
   final Color? color;
   final FontWeight? fontWeight;
   final FontsEnum? fontsEnum;
+  final TextOverflow? overflow;
+  final int? maxLines;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Text(
       text,
       style: TextStyle(
-        fontSize: fontSize ?? (size.height * 0.08),
+        fontSize: fontSize ?? 12.sp,
         color: color ?? Colors.white,
         fontFamily: fontsEnum?.getFonts ?? AppFonts.chubbyCrayon,
         fontWeight: fontWeight,
       ),
+      overflow: overflow,
+      maxLines: maxLines,
+      textAlign: textAlign,
     );
   }
 }

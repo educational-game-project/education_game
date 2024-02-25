@@ -1,3 +1,4 @@
+import 'package:education_game/views/widgets/button/green_board_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:education_game/utils/fonts.dart';
@@ -75,6 +76,14 @@ class FinishPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: GreenBoardButton(
+                  onTap: () => Get.back(result: true),
+                  textButtonEnum: TextButtonEnum.selanjutnya,
+                  showWood: true,
                 ),
               ),
               Positioned(

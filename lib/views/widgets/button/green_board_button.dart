@@ -2,6 +2,7 @@ import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/widgets/button/image_button_widget.dart';
 import 'package:education_game/views/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -29,8 +30,8 @@ class GreenBoardButton extends StatelessWidget {
     super.key,
     this.onTap,
     this.textButtonEnum = TextButtonEnum.lanjut,
-    this.height = 100,
-    this.width = 120,
+    this.height = 46,
+    this.width = 60,
     this.showWood = false,
   });
   final Function()? onTap;
@@ -42,8 +43,8 @@ class GreenBoardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: showWood ? height : null,
-      width: showWood ? width : null,
+      height: showWood ? height.sp : null,
+      width: showWood ? width.sp : null,
       child: Stack(
         children: [
           if (showWood)
@@ -51,12 +52,12 @@ class GreenBoardButton extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Image.asset(
                 AppImages.lineWood,
-                height: height * 0.8,
+                height: height.sp * 0.8,
               ),
             ),
           ImageButtonWidget(
             AppImages.greenBoard,
-            width: width,
+            width: width.sp,
             activeColor: Colors.white,
             onTap: onTap,
             content: Positioned.fill(

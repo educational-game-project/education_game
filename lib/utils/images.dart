@@ -30,4 +30,22 @@ class AppImages {
   static const vectorBottomLeft = "assets/icons/vector_bottom_left.png";
   static const happyGirl = "assets/icons/happy_girl.png";
   static const happyBoy = "assets/icons/happy_boy.png";
+  static const lock = "assets/icons/lock.png";
+  static const rateStar = "assets/icons/rateStar.png";
+  static const elephant = "assets/icons/elephant.png";
+
+  static const nanas = "assets/icons/nanas.png";
+  static const mangga = "assets/icons/mangga.png";
+  static const alpukat = "assets/icons/alpukat.png";
+  static const lemon = "assets/icons/lemon.png";
+  static const jeruk = "assets/icons/jeruk.png";
+  static const semangka = "assets/icons/semangka.png";
+  static const apel = "assets/icons/apel.png";
+  static const playAudio = "assets/icons/playAudio.png";
+  static const ayam = "assets/icons/Ayam.png";
+  static const gajah = "assets/icons/Gajah.png";
+  static const singa = "assets/icons/Singa.png";
+  static const kucing = "assets/icons/Kucing.png";
+  static const anjing = "assets/icons/Anjing.png";
+  static const kelinci = "assets/icons/Kelinci.png";
 }

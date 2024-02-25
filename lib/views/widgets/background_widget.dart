@@ -3,8 +3,11 @@ import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/widgets/backgroud/button_exit.dart';
 import 'package:education_game/views/widgets/backgroud/button_start.dart';
 import 'package:education_game/views/widgets/button/image_button_widget.dart';
+import 'package:education_game/views/widgets/custom/loadable_widget.dart';
 import 'package:education_game/views/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/route_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class BackgroudWidget extends StatelessWidget {
@@ -17,6 +20,7 @@ class BackgroudWidget extends StatelessWidget {
     this.onExit,
     this.onTapHome,
     this.isHome = false,
+    this.isLoading = false,
     this.title,
   });
   final Widget child;
@@ -27,10 +31,11 @@ class BackgroudWidget extends StatelessWidget {
   final Function()? onTapHome;
   final bool isHome;
   final String? title;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = Get.size;
 
     List<Widget> home() {
       return [
@@ -45,13 +50,10 @@ class BackgroudWidget extends StatelessWidget {
           alignment: Alignment.topRight,
           child: ImageButtonWidget(
             AppImages.iconHome,
-            height: size.height * 0.15,
+            height: size.height * 0.13,
             activeColor: Colors.white,
             onTap: onTapHome,
-          ).pOnly(
-            top: size.height * 0.1,
-            right: 20,
-          ),
+          ).px(8.sp).pOnly(top: 12.sp, bottom: 4.sp),
         ),
       ];
     }
@@ -87,43 +89,50 @@ class BackgroudWidget extends StatelessWidget {
     }
 
     Widget backButton() {
-      return Positioned(
-        left: 20,
-        top: size.height * 0.04,
+      return Align(
+        alignment: Alignment.topLeft,
         child: ImageButtonWidget(
           AppImages.tombolKembali,
+          height: size.height * 0.15,
           activeColor: Colors.white,
           onTap: onBack,
         ),
-      );
+      ).px(8.sp).pOnly(top: 12.sp, bottom: 4.sp);
     }
 
     Widget buildTitle() {
       return Align(
         alignment: Alignment.topCenter,
-        child: TextWidget(text: title!).pOnly(top: size.height * 0.1),
+        child: TextWidget(
+          text: title!,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.bold,
+        ).px(8.sp).pOnly(top: 12.sp, bottom: 4.sp),
       );
     }
 
     return Scaffold(
       backgroundColor: AppColors.primary500,
-      body: Stack(
-        children: [
-          if (onTapHome != null) lineBottomLeft() else decorationBottomLeft(),
-          if (onTapHome != null) ...home() else decorationTopRight(),
-          if (title != null) buildTitle(),
-          Align(
-            alignment: Alignment.center,
-            child: child,
-          ),
-          if (onBack != null) backButton(),
-          if (onExit != null) ButtonExit(onTap: onExit),
-          if ((onStart ?? onContinue) != null)
-            ButtonStart(
-              isHome: onStart != null,
-              onTap: onStart ?? onContinue,
+      body: LoadableWidget(
+        isLoading: isLoading,
+        child: Stack(
+          children: [
+            if (onTapHome != null) lineBottomLeft() else decorationBottomLeft(),
+            if (onTapHome != null) ...home() else decorationTopRight(),
+            if (title != null) buildTitle(),
+            Align(
+              alignment: Alignment.center,
+              child: child,
             ),
-        ],
+            if (onBack != null) backButton(),
+            if (onExit != null) ButtonExit(onTap: onExit),
+            if ((onStart ?? onContinue) != null)
+              ButtonStart(
+                isHome: onStart != null,
+                onTap: onStart ?? onContinue,
+              ),
+          ],
+        ),
       ),
     );
   }

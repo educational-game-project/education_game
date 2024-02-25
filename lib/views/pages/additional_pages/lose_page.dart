@@ -2,6 +2,7 @@ import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/home/home_page.dart';
+import 'package:education_game/views/widgets/button/green_board_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -63,6 +64,14 @@ class LosePage extends StatelessWidget {
                       ],
                     ),
                   ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: GreenBoardButton(
+                  onTap: () => Get.back(result: true),
+                  textButtonEnum: TextButtonEnum.mainLagi,
+                  showWood: true,
                 ),
               ),
               Positioned(

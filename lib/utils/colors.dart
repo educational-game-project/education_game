@@ -79,4 +79,10 @@ class AppColors {
   static const Color danger700 = Color(0xffB73473);
   static const Color danger800 = Color(0xff932163);
   static const Color danger900 = Color(0xff7A1359);
+
+  static const Color blue = Color(0xff2FABE0);
+  static const Color purple = Color(0xffB764C1);
+  static const Color green = Color(0xff4AB448);
+  static const Color grey = Color(0xffCCCCCC);
+  static const Color backgroundGameTop = Color(0xffFFECC7);
 }

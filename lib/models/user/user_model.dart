@@ -34,9 +34,12 @@ class UserModel extends Equatable {
       role: json['role'],
       email: json['email'],
       phoneNumber: json['phoneNumber'],
-      image: json['image'] == null ? null : MediaModel.fromJson(json['image']),
-      school:
-          json['school'] == null ? null : SchoolModel.fromJson(json['school']),
+      image: json['image'] == null || json['image'] is String
+          ? null
+          : MediaModel.fromJson(json['image']),
+      school: json['school'] == null || json['school'] is String
+          ? null
+          : SchoolModel.fromJson(json['school']),
       deletedAt: json['deletedAt'] == null
           ? null
           : DateTime.tryParse(json['deletedAt']),

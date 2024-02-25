@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class _LoginPage extends StatelessWidget {
-  _LoginPage({super.key});
+  _LoginPage();
 
   final controller = TextEditingController();
 

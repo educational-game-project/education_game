@@ -11,12 +11,12 @@ class EndPoints {
   static const gameUrl = '/games';
 
   // level
-  static const levelUrl = '/level/find';
+  static const levelUrl = '/levels/find';
   static const levelInitUrl = '/level/init';
 
   // record
   static const recordUrl = '/record';
 
   // leaderboard
-  static const leaderboardUrl = '/leaderboard';
+  static const leaderboardUrl = '/score/leaderboard';
 }

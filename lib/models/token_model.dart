@@ -51,7 +51,7 @@ class TokensModel extends Equatable {
   }
 
   Future<void> save() async {
-    debugPrint('saving token ${accessToken} ${refreshToken}');
+    debugPrint('saving token $accessToken $refreshToken');
     await _storage.write(
       key: TokenEnum.accessToken.name,
       value: accessToken,

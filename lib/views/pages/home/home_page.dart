@@ -34,7 +34,7 @@ class _HomePage extends StatelessWidget {
       builder: (context, state) {
         void onExit() async {
           var isLogout = await AppDialog().logoutDialog();
-          if (isLogout) authCubit.logout();
+          if (isLogout ?? false) authCubit.logout();
         }
 
         void onStart() {

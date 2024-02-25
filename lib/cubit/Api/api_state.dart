@@ -36,3 +36,27 @@ class RefreshTokensSuccess extends ApiState {
   final RefreshTokensResponses responses;
   const RefreshTokensSuccess(this.params, this.responses);
 }
+
+class GetListGameSuccess extends ApiState {
+  final GameParam params;
+  final GameResponse responses;
+  const GetListGameSuccess(this.params, this.responses);
+}
+
+class GetLevelSuccess extends ApiState {
+  final GameParam params;
+  final GameResponse responses;
+  const GetLevelSuccess(this.params, this.responses);
+}
+
+class GetLeaderBoardSuccess extends ApiState {
+  final GameParam params;
+  final GameResponse responses;
+  const GetLeaderBoardSuccess(this.params, this.responses);
+}
+
+class RecordGameSuccess extends ApiState {
+  final GameParam params;
+  final GameResponse responses;
+  const RecordGameSuccess(this.params, this.responses);
+}
