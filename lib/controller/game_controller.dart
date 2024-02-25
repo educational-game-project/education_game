@@ -20,7 +20,6 @@ import 'package:education_game/views/widgets/dialog/failded_dialog.dart';
 import 'package:education_game/views/widgets/dialog/success_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class GameController extends GetxController {
   // variable
@@ -67,28 +66,57 @@ class GameController extends GetxController {
 
   // Ayo berhitung
   AyoBerhitung get quest => AyoBerhitungConst.level(selectedLevel.value);
-  final totalDragged = Rx<int>(0);
-  final answer = Rxn<int>();
-  void onDragged(int value) => totalDragged.value += value;
+  final totalDraggedAyoBerhitung = Rx<int>(0);
+  final answerAyoBerhitung = Rxn<int>();
+  void onDragged(int value) => totalDraggedAyoBerhitung.value += value;
   void onAnswer(int value) {
     timer.value?.cancel();
-    answer.value = value;
+    answerAyoBerhitung.value = value;
     onCek();
   }
 
   bool get isDraggedAll =>
-      (quest.number1 + quest.number2) == totalDragged.value;
+      (quest.number1 + quest.number2) == totalDraggedAyoBerhitung.value;
+
+  void resetAyoBerhitung() {
+    totalDraggedAyoBerhitung.value = 0;
+    answerAyoBerhitung.value = null;
+  }
 
   // ======== Tebak Kata =========
   TebakKata get tebakKata => TebakKataConst.level(selectedLevel.value);
-  final wordTebakKata = Rx<String>('');
+  final wordTebakKata = Rx<List<String>>([]);
+  final answerTebakKata = Rx<List<String>>([]);
 
-  void onDraggedTebakKata(int index) {
-    var cache = wordTebakKata.value.split('');
-    cache.replaceWhere(
-      (currentValue) => currentValue == '_',
-      tebakKata.answer[index],
-    );
+  initTebakKata() {
+    setLoading(true);
+    wordTebakKata.value = tebakKata.word;
+    answerTebakKata.value = tebakKata.answer;
+    setLoading(false);
+  }
+
+  void onDraggedTebakKata(int indexAnswer, int indexWord) {
+    var cache = List<String>.from(wordTebakKata.value);
+    cache[indexWord] = answerTebakKata.value[indexAnswer];
+    wordTebakKata.value = cache;
+  }
+
+  void resetTebakKata() {
+    wordTebakKata.value = [];
+    answerTebakKata.value = [];
+  }
+
+  // ======= handling =========
+
+  bool checkIfValid() {
+    switch (gameEnum.value) {
+      case GameEnum.ayoBerhitung:
+        return answerAyoBerhitung.value == quest.answerKey;
+      case GameEnum.tebakGambar:
+        return false;
+      case GameEnum.tebakKata:
+        return wordTebakKata.value.join() == tebakKata.answerKey;
+    }
   }
 
   void nextLevel() {
@@ -114,7 +142,7 @@ class GameController extends GetxController {
 
   onCek() async {
     var param = GameParam(game: selectedGame.value?.id, time: time.value);
-    var isValid = answer.value == quest.answerKey;
+    var isValid = checkIfValid();
     await recordGame(param.copyWith(type: isValid ? 'Success' : 'Failed'));
     if (isValid) {
       currentLevel.value += 1;
@@ -127,7 +155,7 @@ class GameController extends GetxController {
       }
     } else {
       liveLeft.value -= 1;
-      if (liveLeft.value > 1) {
+      if (liveLeft.value > 0) {
         var res = await Get.dialog(const FailedDialog());
         if (res ?? false) restartLevel();
       } else {
@@ -138,26 +166,20 @@ class GameController extends GetxController {
   }
 
   reset() {
-    totalDragged.value = 0;
-    answer.value = null;
+    switch (gameEnum.value) {
+      case GameEnum.ayoBerhitung:
+        return resetAyoBerhitung();
+      case GameEnum.tebakGambar:
+        return null;
+      case GameEnum.tebakKata:
+        return resetTebakKata();
+      default:
+    }
     if (timer.value?.isActive ?? false) timer.value?.cancel();
     time.value = 0;
   }
 
   // global
-  Function()? onContinue() {
-    debugPrint('onContinue : ${gameEnum.value}');
-    switch (gameEnum.value) {
-      case GameEnum.ayoBerhitung:
-        return null;
-      case GameEnum.tebakGambar:
-        return () {};
-      case GameEnum.tebakKata:
-        return () {};
-      default:
-        return null;
-    }
-  }
 
   List<LeaderboardModel> get listRanked {
     if (leaderboards.value.length == 1) return leaderboards.value;
@@ -201,8 +223,6 @@ class GameController extends GetxController {
     //TODO
   }
   void _getLeaderBoardSuccess(GameResponse gameResponse) {
-    //TODO
-    debugPrint('set Leaderboard : ${gameResponse.leaderBoard}');
     leaderboards.value = gameResponse.leaderBoard;
   }
 
@@ -252,49 +272,4 @@ class GameController extends GetxController {
     );
     setLoading(false);
   }
-
-  // StreamSubscription? _apiCubitSubs;
-  // final ApiCubit apiCubit = ApiCubit();
-
-  // void getListGame() {
-  //   apiCubit.getListGame(const GameParam(author: 'Iwan Suryaningrat'));
-  // }
-
-  // void getLevelGame() {
-  //   apiCubit.getLevel(GameParam(id: selectedGame.value?.id));
-  // }
-
-  // void getLeaderBoardGame() {
-  //   apiCubit.getLeaderBoard(GameParam(game: selectedGame.value?.id));
-  // }
-
-  // void recordGame(GameParam gameParam) {
-  //   apiCubit.recordGame(gameParam);
-  // }
-
-  // @override
-  // void onInit() {
-  //   _apiCubitSubs = apiCubit.stream.listen((state) {
-  //     debugPrint('$state');
-  //     if (state is GetListGameSuccess) {
-  //       debugPrint('${state.responses.listGame}');
-  //     }
-  //     if (state is GetLevelSuccess) {
-  //       debugPrint('${state.responses.level}');
-  //     }
-  //     if (state is GetLeaderBoardSuccess) {
-  //       debugPrint('${state.responses.leaderBoard}');
-  //     }
-  //     if (state is RecordGameSuccess) {
-  //       debugPrint('${state.responses.record}');
-  //     }
-  //   });
-  //   super.onInit();
-  // }
-
-  // @override
-  // void onClose() {
-  //   _apiCubitSubs?.cancel();
-  //   super.onClose();
-  // }
 }

@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 class TebakKata extends Equatable {
   final int level;
-  final String word;
-  final String answer;
+  final List<String> word;
+  final List<String> answer;
   final String answerKey;
   const TebakKata({
     required this.level,

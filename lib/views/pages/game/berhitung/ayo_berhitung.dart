@@ -91,8 +91,6 @@ class AyoBerhitungWidget extends StatelessWidget {
       return DragTarget<int>(
         onAcceptWithDetails: (details) {
           gameController.onDragged(details.data);
-          debugPrint('dragged : ${details.data}');
-          debugPrint('dragged : ${gameController.totalDragged}');
         },
         builder: (context, candidateData, rejectedData) {
           return DottedBorder(
@@ -100,7 +98,9 @@ class AyoBerhitungWidget extends StatelessWidget {
             radius: Radius.circular(12.sp),
             dashPattern: [10.sp, 6.sp],
             strokeWidth: 2.sp,
-            child: resultFormatter(gameController.totalDragged.value).p(4.sp),
+            child:
+                resultFormatter(gameController.totalDraggedAyoBerhitung.value)
+                    .p(4.sp),
           ).w(100.sp).h(90.sp);
         },
       );

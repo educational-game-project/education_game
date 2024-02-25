@@ -4,20 +4,20 @@ class TebakKataConst {
   TebakKataConst._();
   static const level1 = TebakKata(
     level: 1,
-    word: 'Sep_tu',
-    answer: 'alfpt',
+    word: ['S', 'e', 'p', '_', 't', 'u'],
+    answer: ['a', 'l', 'f', 'p', 't'],
     answerKey: 'Sepatu',
   );
   static const level2 = TebakKata(
     level: 2,
-    word: 'Se_ola_',
-    answer: 'ksox',
-    answerKey: 'sekolah',
+    word: ['S', 'e', '_', 'o', 'l', 'a', '_'],
+    answer: ['k', 's', 'o', 'h'],
+    answerKey: 'Sekolah',
   );
   static const level3 = TebakKata(
     level: 3,
-    word: 'Lu_isa_',
-    answer: 'alnkmd',
+    word: ['L', 'u', '_', 'i', 's', 'a', '_'],
+    answer: ['a', 'l', 'n', 'k', 'm', 'd'],
     answerKey: 'Lukisan',
   );
 

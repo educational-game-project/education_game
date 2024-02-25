@@ -5,9 +5,7 @@ import 'package:education_game/views/pages/game/berhitung/ayo_berhitung.dart';
 import 'package:education_game/views/pages/game/gambar/tebak_gambar.dart';
 import 'package:education_game/views/pages/game/kata/tebak_kata_widget.dart';
 import 'package:education_game/views/widgets/backgroud/background_game.dart';
-import 'package:education_game/views/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class GamePage extends StatelessWidget {
@@ -25,13 +23,6 @@ class GamePage extends StatelessWidget {
           return const TebakGambarWidget();
         case GameEnum.tebakKata:
           return const TebakKataWidget();
-
-        default:
-          return TextWidget(
-            text: 'On Development',
-            fontSize: 30.sp,
-            color: Colors.black,
-          );
       }
     }
 
@@ -45,13 +36,12 @@ class GamePage extends StatelessWidget {
           // onTapHome: () => Get.offAll(const HomePage()),
           onTapHome: () => Get.to(const LeaderBoardPage()),
           onBack: () => Get.back(),
-          onContinue: gameController.onContinue,
+          onContinue: gameController.onCek,
           stars: gameController.liveLeft.value,
           title:
               'Level ${gameController.selectedLevel.value} ${gameController.time.value}',
           showButton: gameController.gameEnum.value != GameEnum.ayoBerhitung,
           child: game(),
-          // child: GameWidget(game: DragEventsGame()),
         ),
       );
     });

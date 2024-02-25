@@ -8,11 +8,13 @@ class DraggableWidget extends HookWidget {
     required this.feedback,
     this.childWhenDragging,
     required this.child,
+    this.keepWidget = false,
   });
   final int data;
   final Widget feedback;
   final Widget? childWhenDragging;
   final Widget child;
+  final bool keepWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class DraggableWidget extends HookWidget {
       children: [
         Draggable<int>(
           onDragCompleted: () {
-            isDragged.value = true;
+            if (!keepWidget) isDragged.value = true;
           },
           onDragEnd: (details) {},
           data: data,

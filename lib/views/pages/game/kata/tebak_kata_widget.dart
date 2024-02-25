@@ -1,18 +1,26 @@
+import 'package:education_game/controller/game_controller.dart';
 import 'package:education_game/utils/colors.dart';
 import 'package:education_game/views/widgets/button/custom_button_widget.dart';
 import 'package:education_game/views/widgets/drag_and_drop/draggable_widget.dart';
 import 'package:education_game/views/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class TebakKataWidget extends StatelessWidget {
+class TebakKataWidget extends HookWidget {
   const TebakKataWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var word = 'Se_ola_';
-    var answerKey = 'akmlh';
+    var gameController = Get.put(GameController());
+
+    useEffect(() {
+      Future.delayed(Duration.zero, () => gameController.initTebakKata());
+      return null;
+    }, [gameController]);
+
     Widget charItem(String char, {Color? color, bool isDragTarget = false}) {
       return Container(
         decoration: BoxDecoration(
@@ -41,16 +49,15 @@ class TebakKataWidget extends StatelessWidget {
       );
     }
 
-    Widget dragTarget(String charTarget) {
-      return DragTarget<String>(
+    Widget dragTarget(int index) {
+      return DragTarget<int>(
         onAcceptWithDetails: (details) {
-          // gameController.onDragged(details.data);
-          // debugPrint('dragged : ${details.data}');
-          // debugPrint('dragged : ${gameController.totalDragged}');
+          gameController.onDraggedTebakKata(details.data, index);
         },
         builder: (context, candidateData, rejectedData) {
+          var newValue = gameController.wordTebakKata.value[index];
           return charItem(
-            '...',
+            newValue != '_' ? newValue : '...',
             color: AppColors.backgroundGameTop,
             isDragTarget: true,
           );
@@ -59,12 +66,12 @@ class TebakKataWidget extends StatelessWidget {
       );
     }
 
-    Widget words(String word) {
-      var listChar = word.split('');
+    Widget words() {
+      var listChar = gameController.tebakKata.word;
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: listChar.map((e) {
-          if (e == '_') return dragTarget(e).px(2.sp);
+        children: listChar.mapIndexed((e, index) {
+          if (e == '_') return dragTarget(index).px(2.sp);
           return charItem(e).px(2.sp);
         }).toList(),
       );
@@ -76,15 +83,16 @@ class TebakKataWidget extends StatelessWidget {
 
     Widget draggable(String char) {
       return DraggableWidget(
-        data: answerKey.indexOf(char),
+        data: gameController.answerTebakKata.value.indexOf(char),
+        keepWidget: true,
         feedback: charItem(char, color: AppColors.blue),
         childWhenDragging: charItem(char, color: AppColors.grey),
         child: charItem(char, color: AppColors.blue),
       );
     }
 
-    Widget answer(String word) {
-      var listChar = word.split('');
+    Widget answer() {
+      var listChar = gameController.answerTebakKata.value;
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: listChar.map((e) {
@@ -93,19 +101,22 @@ class TebakKataWidget extends StatelessWidget {
       );
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        words(word).py(12.sp),
-        HStack([
-          TextWidget(
-            text: 'Jawab :',
-            color: Colors.black,
-            fontSize: 14.sp,
-          ),
-          answer(answerKey),
-        ]),
-      ],
-    );
+    return Obx(() {
+      if (gameController.wordTebakKata.value.isEmpty) return Container();
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          words().py(12.sp),
+          HStack([
+            TextWidget(
+              text: 'Jawab :',
+              color: Colors.black,
+              fontSize: 14.sp,
+            ),
+            answer(),
+          ]),
+        ],
+      );
+    });
   }
 }
