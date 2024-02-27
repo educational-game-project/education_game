@@ -113,6 +113,7 @@ class BackgroudWidget extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.primary500,
+      resizeToAvoidBottomInset: false,
       body: LoadableWidget(
         isLoading: isLoading,
         child: Stack(

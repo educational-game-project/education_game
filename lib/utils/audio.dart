@@ -25,7 +25,7 @@ class AppAudios {
   static const apel =
       "https://res.cloudinary.com/sningratt/video/upload/v1708868814/sound/apel.mp3";
   static const semangka =
-      "https://res.cloudinary.com/sningratt/video/upload/v1708868814/sound/semangka.mp3";
+      "https://res.cloudinary.com/sningratt/video/upload/v1709040780/sound/semangka.mp3";
   static const alpukat =
       "https://res.cloudinary.com/sningratt/video/upload/v1708868814/sound/alpukat.mp3";
   static const lemon =

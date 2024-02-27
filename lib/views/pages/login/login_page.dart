@@ -4,8 +4,11 @@ import 'package:education_game/utils/colors.dart';
 import 'package:education_game/utils/fonts.dart';
 import 'package:education_game/views/widgets/background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -40,66 +43,78 @@ class _LoginPage extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          resizeToAvoidBottomInset: false,
-          // appBar: const GeneralAppbar(),
-          backgroundColor: AppColors.primary500,
-          body: Form(
-            key: formKey,
-            child: BackgroudWidget(
-              onBack: () => Get.back(),
-              onContinue: () {
-                if (formKey.currentState!.validate()) {
-                  context.read<AuthCubit>().login(controller.text);
-                }
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Namaku:',
-                    style: TextStyle(
-                      color: AppColors.neutral900,
-                      fontFamily: AppFonts.clapHand,
-                      fontSize: 28,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    width: 400,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.white,
-                      boxShadow: List.filled(
-                          3,
-                          const BoxShadow(
-                            color: Color(0x3F000000),
-                            blurRadius: 6,
-                            offset: Offset(0, 4),
-                            spreadRadius: 2,
-                          ),
-                          growable: true),
-                    ),
-                    child: TextFormField(
-                      controller: controller,
-                      decoration: const InputDecoration(
-                        hintText: 'Masukkan namamu...',
-                        fillColor: AppColors.neutral400,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      style: const TextStyle(
+        return BackgroudWidget(
+          isLoading: state.apiState is ApiLoading,
+          onBack: () => Get.back(),
+          onContinue: () {
+            // if (formKey.currentState!.validate()) {
+            if (controller.text.isNotEmpty) {
+              context.read<AuthCubit>().login(controller.text.trim());
+            }
+          },
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Center(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Namaku:',
+                      style: TextStyle(
                         color: AppColors.neutral900,
-                        fontFamily: AppFonts.chubbyCrayon,
-                        fontSize: 32,
+                        fontFamily: AppFonts.clapHand,
+                        fontSize: 28,
                       ),
                       textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
+                    ).fittedBox(),
+                    Container(
+                      alignment: Alignment.center,
+                      width: 200.sp,
+                      // height: 30.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.white,
+                        boxShadow: List.filled(
+                            3,
+                            const BoxShadow(
+                              color: Color(0x3F000000),
+                              blurRadius: 6,
+                              offset: Offset(0, 4),
+                              spreadRadius: 2,
+                            ),
+                            growable: true),
+                      ),
+                      child: TextFormField(
+                        controller: controller,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 8.sp,
+                            vertical: 8.sp,
+                          ),
+                          hintText: 'Masukkan namamu...',
+                          fillColor: AppColors.neutral400,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        style: TextStyle(
+                          color: AppColors.neutral900,
+                          fontFamily: AppFonts.chubbyCrayon,
+                          fontSize: 14.sp,
+                          height: 0.8,
+                        ),
+                        textAlign: TextAlign.center,
+                        textAlignVertical: TextAlignVertical.center,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r"[A-Za-z ']")),
+                        ],
+                      ),
+                    ).fittedBox(),
+                  ],
+                ),
               ),
             ),
           ),

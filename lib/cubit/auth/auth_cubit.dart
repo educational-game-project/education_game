@@ -31,14 +31,13 @@ class AuthCubit extends Cubit<AuthState> {
         debugPrint(
             'tokens saved ${(await state.tokens?.read())?.accessToken.toString()}');
         Get.offAll(const HomePage());
-        Get.snackbar('Login Success', 'Welcome ${event.responses.user.name}');
+        // Get.snackbar('Login Success', 'Welcome ${event.responses.user.name}');
       }
 
       if (event is LogoutSuccess) {
         await state.tokens?.remove();
         emit(AuthState.unauthenticated());
-        await SystemNavigator.pop();
-        // await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        exitApp();
       }
 
       if (event is RefreshTokensSuccess) {
@@ -69,6 +68,17 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void logout() {
-    _apiCubit.logout();
+    debugPrint('click logout : ${state.status}');
+    switch (state.status) {
+      case AuthStatus.authenticated:
+        _apiCubit.logout();
+        break;
+      case AuthStatus.unauthenticated:
+        exitApp();
+        break;
+    }
   }
+
+  void exitApp() => SystemNavigator.pop();
+  // await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
 }
