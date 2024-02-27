@@ -1,9 +1,9 @@
 import 'package:education_game/controller/game_controller.dart';
 import 'package:education_game/enums/game/game_enum.dart';
-import 'package:education_game/views/pages/additional_pages/leaderboard_page.dart';
 import 'package:education_game/views/pages/game/berhitung/ayo_berhitung.dart';
 import 'package:education_game/views/pages/game/gambar/tebak_gambar.dart';
 import 'package:education_game/views/pages/game/kata/tebak_kata_widget.dart';
+import 'package:education_game/views/pages/home/home_page.dart';
 import 'package:education_game/views/widgets/backgroud/background_game.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,13 +33,15 @@ class GamePage extends StatelessWidget {
         },
         child: BackgroudGameWidget(
           isLoading: gameController.isLoading.value,
-          // onTapHome: () => Get.offAll(const HomePage()),
-          onTapHome: () => Get.to(const LeaderBoardPage()),
+          onTapHome: () {
+            gameController.reset();
+            Get.offAll(const HomePage());
+          },
+          // onTapHome: () => Get.to(const LeaderBoardPage()),
           onBack: () => Get.back(),
           onContinue: gameController.onCek,
           stars: gameController.liveLeft.value,
-          title:
-              'Level ${gameController.selectedLevel.value} ${gameController.time.value}',
+          title: 'Level ${gameController.selectedLevel.value}',
           showButton: gameController.gameEnum.value != GameEnum.ayoBerhitung,
           child: game(),
         ),

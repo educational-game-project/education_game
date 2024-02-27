@@ -30,6 +30,18 @@ class ApiCubit extends Cubit<ApiState> {
     );
   }
 
+  Future<void> logout() async {
+    emit(const ApiLoading());
+
+    final resp = await repository.logout();
+    resp.fold(
+      (failure) => emit(ApiError(failure)),
+      (success) => emit(
+        LogoutSuccess(success),
+      ),
+    );
+  }
+
   Future<void> refreshTokens(RefreshTokenParams params) async {
     emit(const ApiLoading());
 

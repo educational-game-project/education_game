@@ -1,7 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:education_game/controller/game_controller.dart';
 import 'package:education_game/utils/colors.dart';
-import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/widgets/button/custom_button_widget.dart';
 import 'package:education_game/views/widgets/drag_and_drop/draggable_widget.dart';
 import 'package:education_game/views/widgets/text/text_widget.dart';
@@ -16,14 +15,12 @@ class AyoBerhitungWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var gameController = Get.put(GameController());
-    var number1 = gameController.quest.number1;
-    var number2 = gameController.quest.number2;
-
-    debugPrint('gameEnum : ${gameController.gameEnum.value}');
+    var number1 = gameController.ayoBerhitung.number1;
+    var number2 = gameController.ayoBerhitung.number2;
 
     Widget image({Color? color}) {
-      return Image.asset(
-        AppImages.elephant,
+      return Image.network(
+        gameController.ayoBerhitung.image,
         height: 26.sp,
         width: 26.sp,
         color: color,
@@ -114,7 +111,7 @@ class AyoBerhitungWidget extends StatelessWidget {
             text: 'Jawab : ',
             color: Colors.black,
           ),
-          ...gameController.quest.answers.map((value) {
+          ...gameController.ayoBerhitung.answers.map((value) {
             return CustomButtonWidget(
               onTap: () {
                 debugPrint('clicked $value');
@@ -135,26 +132,29 @@ class AyoBerhitungWidget extends StatelessWidget {
       ).pOnly(bottom: 8.sp, right: 20.sp);
     }
 
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                leftSide(),
-                Icon(Icons.add_rounded, size: 30.sp),
-                rightSide(),
-                Icon(Icons.drag_handle_rounded, size: 30.sp).pOnly(right: 8.sp),
-                result(),
-              ],
-            ).py(12.sp),
-            answer(),
-          ],
-        ).fittedBox(),
-      ],
-    );
+    return Obx(() {
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  leftSide(),
+                  Icon(Icons.add_rounded, size: 30.sp),
+                  rightSide(),
+                  Icon(Icons.drag_handle_rounded, size: 30.sp)
+                      .pOnly(right: 8.sp),
+                  result(),
+                ],
+              ).py(12.sp),
+              answer(),
+            ],
+          ).fittedBox(),
+        ],
+      );
+    });
   }
 }

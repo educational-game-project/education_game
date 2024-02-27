@@ -13,7 +13,9 @@ import 'package:education_game/repositories/responses/refresh_tokens_responses.d
 class ApiRepository {
   final BaseFetcher _fetcher = BaseFetcher();
 
-  Future<Either<BaseResponse, LoginResponses>> login(LoginParams params) async {
+  Future<Either<BaseResponse, LoginResponses>> login(
+    LoginParams params,
+  ) async {
     try {
       final resp = await _fetcher.post(
         EndPoints.loginUrl,
@@ -25,8 +27,21 @@ class ApiRepository {
     }
   }
 
+  Future<Either<BaseResponse, LoginResponses>> logout() async {
+    try {
+      final resp = await _fetcher.post(
+        EndPoints.logoutUrl,
+        // data: params.toJson,
+      );
+      return Right(LoginResponses(resp));
+    } on ServerException catch (e) {
+      return Left(e.errorBaseResponse);
+    }
+  }
+
   Future<Either<BaseResponse, RefreshTokensResponses>> refreshTokens(
-      RefreshTokenParams params) async {
+    RefreshTokenParams params,
+  ) async {
     try {
       final resp =
           await _fetcher.post(EndPoints.refreshTokenUrl, data: params.toJson);

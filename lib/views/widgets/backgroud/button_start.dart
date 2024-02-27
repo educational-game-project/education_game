@@ -19,7 +19,7 @@ class ButtonStart extends StatelessWidget {
           Positioned(
             bottom: -50,
             right: 0,
-            child: Image.asset(
+            child: Image.network(
               AppImages.lineDotRight,
               height: 160,
               width: 160,

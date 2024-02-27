@@ -55,7 +55,7 @@ class SplashScreen extends HookWidget {
                               bottom: up ? 10 : 0,
                               left: 0,
                               right: 0,
-                              child: Image.asset(
+                              child: Image.network(
                                 AppImages.logo,
                                 height: Get.height * 0.35,
                               ),

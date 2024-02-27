@@ -52,7 +52,7 @@ class SuccessDialog extends StatelessWidget {
               Positioned(
                 left: 40,
                 bottom: 0,
-                child: Image.asset(
+                child: Image.network(
                   AppImages.happyGirl,
                   height: Get.height * 0.50,
                 ),
@@ -60,7 +60,7 @@ class SuccessDialog extends StatelessWidget {
               Positioned(
                 right: 40,
                 bottom: 0,
-                child: Image.asset(
+                child: Image.network(
                   AppImages.happyBoy,
                   height: Get.height * 0.50,
                 ),

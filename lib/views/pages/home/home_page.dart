@@ -49,9 +49,10 @@ class _HomePage extends StatelessWidget {
         }
 
         return BackgroudWidget(
+          isLoading: state.apiState is ApiLoading,
           onStart: onStart,
           onExit: onExit,
-          child: Image.asset(
+          child: Image.network(
             AppImages.center,
             width: size.width * 0.55,
           ),

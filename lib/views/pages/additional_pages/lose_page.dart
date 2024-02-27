@@ -21,7 +21,7 @@ class LosePage extends StatelessWidget {
               alignment: Alignment.topRight,
               child: GestureDetector(
                 onTap: () => Get.to(const HomePage()),
-                child: Image.asset(
+                child: Image.network(
                   AppImages.home,
                   height: Get.height * 0.155,
                 ),
@@ -77,7 +77,7 @@ class LosePage extends StatelessWidget {
               Positioned(
                 left: 85,
                 bottom: 50,
-                child: Image.asset(
+                child: Image.network(
                   AppImages.sad,
                   // width: Get.width * 0.5,
                   height: Get.height * 0.65,

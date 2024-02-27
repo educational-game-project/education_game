@@ -119,19 +119,18 @@ class LeaderBoardPage extends HookWidget {
     }
 
     return Obx(() {
-      var user = gameController.leaderboards.value.isEmpty
-          ? null
-          : gameController.leaderboards.value[0];
-      var generated = user == null ? [] : List.filled(20, user);
-      var listRanked = generated;
-      var listRanded2 = generated;
-      // var listRanked = gameController.leaderboards.value;
-      // var listRanded2 = gameController.listRanked3Up;
-      // var listRanked = [2, 1, 3];
-      // var listRanded2 = [4, 5, 6, 7, 8];
+      // var user = gameController.leaderboards.value.isEmpty
+      //     ? null
+      //     : gameController.leaderboards.value[0];
+      // var generated = user == null ? [] : List.filled(20, user);
+      // var listRanked = generated;
+      // var listRanded2 = generated;
+      var listRanked = gameController.leaderboards.value;
+      var listRanded2 = gameController.listRanked3Up;
       return BackgroudWidget(
         onTapHome: () => Get.offAll(() => const HomePage()),
-        onContinue: () => Get.back(), //gameController.restartGame(),
+        onContinue: () => gameController.restartGame(),
+        // onContinue: () => Get.back(), //gameController.restartGame(),
         child: Column(
           children: [
             Stack(

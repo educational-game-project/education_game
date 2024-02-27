@@ -71,7 +71,7 @@ class BackgroudGameWidget extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [1, 2, 3].map((e) {
-          return Image.asset(
+          return Image.network(
             AppImages.rateStar,
             height: 14.sp,
             width: 16.sp,

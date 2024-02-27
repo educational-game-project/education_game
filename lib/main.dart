@@ -18,6 +18,7 @@ void main() async {
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
       ]);
+      await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       await ScreenUtil.ensureScreenSize();
       runApp(const App());
     },

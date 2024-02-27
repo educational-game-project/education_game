@@ -28,56 +28,50 @@ class LevelPage extends HookWidget {
     }, [gameController]);
 
     Widget item({required int level, bool isActive = true}) {
-      return Obx(() {
-        var isActive = level <= gameController.currentLevel.value;
-        return Center(
-          child: CustomButtonWidget(
-            onTap: () {
+      var isActive = level <= gameController.currentLevel.value;
+      return Center(
+        child: CustomButtonWidget(
+          onTap: () {
+            if (isActive) {
               gameController.setLevel(level);
               Get.to(() => const GamePage());
-            },
-            color: isActive
-                ? GameEnum.values[(level - 1) % 3].getColor
-                : AppColors.grey,
-            borderRadius: BorderRadius.circular(50.sp),
-            child: Container(
-              padding: EdgeInsets.all(8.sp),
-              height: Get.width * 0.22,
-              width: Get.width * 0.22,
-              // decoration: BoxDecoration(
-              //   shape: BoxShape.circle,
-              //   // color: isActive
-              //   //     ? GameEnum.values[(level - 1) % 3].getColor
-              //   //     : AppColors.grey,
-              // ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      TextWidget(
-                        text: 'Level',
-                        fontSize: 10.sp,
-                        fontsEnum: FontsEnum.clapHand,
-                      ),
-                      TextWidget(
-                        text: level.toString(),
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.bold,
-                        fontsEnum: FontsEnum.clapHand,
-                      ).py(4.sp),
-                    ],
-                  ),
-                  if (!isActive)
-                    Positioned.fill(child: Image.asset(AppImages.lock))
-                ],
-              ),
+            }
+          },
+          color: isActive
+              ? GameEnum.values[(level - 1) % 3].getColor
+              : AppColors.grey,
+          borderRadius: BorderRadius.circular(50.sp),
+          child: Container(
+            padding: EdgeInsets.all(8.sp),
+            height: Get.width * 0.22,
+            width: Get.width * 0.22,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    TextWidget(
+                      text: 'Level',
+                      fontSize: 10.sp,
+                      fontsEnum: FontsEnum.clapHand,
+                    ),
+                    TextWidget(
+                      text: level.toString(),
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.bold,
+                      fontsEnum: FontsEnum.clapHand,
+                    ).py(4.sp),
+                  ],
+                ),
+                if (!isActive)
+                  Positioned.fill(child: Image.network(AppImages.lock)),
+              ],
             ),
-          ).px(4.sp).pOnly(top: 20.sp),
-        );
-      });
+          ),
+        ).px(4.sp).pOnly(top: 20.sp),
+      );
     }
 
     return Obx(() {

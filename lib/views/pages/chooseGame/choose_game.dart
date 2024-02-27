@@ -21,9 +21,8 @@ class ChooseGame extends HookWidget {
       return null;
     }, [gameController]);
 
-    Widget item({
-      required GameEnum gameEnum,
-    }) {
+    Widget item(GameEnum? gameEnum) {
+      if (gameEnum == null) return Container();
       return SizedBox(
         height: 70.sp,
         width: 80.sp,
@@ -60,7 +59,9 @@ class ChooseGame extends HookWidget {
         title: 'Pilih Permainan',
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: GameEnum.values.map((e) => item(gameEnum: e)).toList(),
+          children: gameController.listGame.value
+              .map((e) => item(e.gameEnum))
+              .toList(),
         ),
       );
     });

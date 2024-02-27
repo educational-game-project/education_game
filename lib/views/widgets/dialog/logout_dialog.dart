@@ -23,7 +23,7 @@ class AppDialog {
                     flex: 2,
                     child: Container(
                       padding: const EdgeInsets.all(20),
-                      child: Image.asset(AppImages.think),
+                      child: Image.network(AppImages.think),
                     ),
                   ),
                   Expanded(
@@ -49,7 +49,7 @@ class AppDialog {
                             children: [
                               Align(
                                 alignment: Alignment.bottomCenter,
-                                child: Image.asset(AppImages.batang),
+                                child: Image.network(AppImages.batang),
                               ),
                               Align(
                                 alignment: Alignment.bottomCenter,

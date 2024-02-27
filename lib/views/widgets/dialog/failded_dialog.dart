@@ -55,7 +55,7 @@ class FailedDialog extends StatelessWidget {
               Positioned(
                 left: 40,
                 bottom: 0,
-                child: Image.asset(
+                child: Image.network(
                   AppImages.sad,
                   height: Get.height * 0.50,
                 ),

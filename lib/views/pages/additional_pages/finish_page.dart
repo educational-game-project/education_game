@@ -21,7 +21,7 @@ class FinishPage extends StatelessWidget {
               alignment: Alignment.topRight,
               child: GestureDetector(
                 onTap: () => Get.to(const HomePage()),
-                child: Image.asset(
+                child: Image.network(
                   AppImages.home,
                   height: Get.height * 0.155,
                 ),
@@ -89,7 +89,7 @@ class FinishPage extends StatelessWidget {
               Positioned(
                 left: 85,
                 bottom: 25,
-                child: Image.asset(
+                child: Image.network(
                   AppImages.happyGirl,
                   height: Get.height * 0.70,
                 ),
@@ -97,7 +97,7 @@ class FinishPage extends StatelessWidget {
               Positioned(
                 right: 65,
                 bottom: 25,
-                child: Image.asset(
+                child: Image.network(
                   AppImages.happyBoy,
                   height: Get.height * 0.65,
                 ),

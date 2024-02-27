@@ -1,3 +1,4 @@
+import 'package:education_game/enums/game/game_enum.dart';
 import 'package:education_game/models/media_model.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,6 +15,7 @@ class GameModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final List<MediaModel>? images;
+  final GameEnum? gameEnum;
 
   const GameModel({
     this.id,
@@ -28,6 +30,7 @@ class GameModel extends Equatable {
     this.createdAt,
     this.updatedAt,
     this.images,
+    this.gameEnum,
   });
 
   factory GameModel.fromJson(Map<String, dynamic> json) {
@@ -54,6 +57,11 @@ class GameModel extends Equatable {
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.tryParse(json['updatedAt']),
+      gameEnum: json['name'] == null
+          ? null
+          : json['name'] is! String
+              ? null
+              : (json['name'] as String).toGameEnum,
     );
   }
 
@@ -71,5 +79,6 @@ class GameModel extends Equatable {
         deletedAt,
         createdAt,
         updatedAt,
+        gameEnum,
       ];
 }

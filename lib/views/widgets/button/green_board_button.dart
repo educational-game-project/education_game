@@ -50,7 +50,7 @@ class GreenBoardButton extends StatelessWidget {
           if (showWood)
             Align(
               alignment: Alignment.bottomCenter,
-              child: Image.asset(
+              child: Image.network(
                 AppImages.lineWood,
                 height: height.sp * 0.8,
               ),

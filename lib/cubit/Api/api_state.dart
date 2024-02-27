@@ -31,6 +31,11 @@ class LoginSuccess extends ApiState {
   const LoginSuccess(this.params, this.responses);
 }
 
+class LogoutSuccess extends ApiState {
+  final LoginResponses responses;
+  const LogoutSuccess(this.responses);
+}
+
 class RefreshTokensSuccess extends ApiState {
   final RefreshTokenParams params;
   final RefreshTokensResponses responses;

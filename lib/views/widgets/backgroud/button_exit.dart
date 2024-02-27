@@ -17,7 +17,7 @@ class ButtonExit extends StatelessWidget {
         Positioned(
           top: 0,
           left: 120,
-          child: Image.asset(
+          child: Image.network(
             AppImages.kiriAtas,
             height: size.height * 0.15,
           ),
@@ -25,7 +25,7 @@ class ButtonExit extends StatelessWidget {
         Positioned(
           top: 0,
           left: 20,
-          child: Image.asset(
+          child: Image.network(
             AppImages.lineWood,
             height: 50,
             width: 50,
@@ -34,7 +34,7 @@ class ButtonExit extends StatelessWidget {
         Positioned(
           top: 0,
           left: 80,
-          child: Image.asset(
+          child: Image.network(
             AppImages.lineWood,
             height: 50,
             width: 50,

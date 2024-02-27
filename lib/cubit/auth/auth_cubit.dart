@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:education_game/cubit/Api/api_cubit.dart';
 import 'package:education_game/enums/api/auth_status_enum.dart';
@@ -33,6 +34,13 @@ class AuthCubit extends Cubit<AuthState> {
         Get.snackbar('Login Success', 'Welcome ${event.responses.user.name}');
       }
 
+      if (event is LogoutSuccess) {
+        emit(AuthState.unauthenticated());
+        state.tokens?.remove();
+        const TokensModel().remove();
+        exit(0);
+      }
+
       if (event is RefreshTokensSuccess) {
         debugPrint('REFRESH TOKENS ${event.responses.tokens}');
         event.responses.tokens.save();
@@ -60,7 +68,6 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void logout() {
-    emit(AuthState.unauthenticated());
-    state.tokens?.remove();
+    _apiCubit.logout();
   }
 }

@@ -1,6 +1,7 @@
 class AppIcons {
   AppIcons._();
 
+  static const icons = '/assets/icons/icons.png';
   static const icon =
       'https://res.cloudinary.com/sningratt/image/upload/v1708869662/assets/icons.png';
   static const back =

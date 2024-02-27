@@ -41,7 +41,7 @@ class BackgroudWidget extends StatelessWidget {
       return [
         Align(
           alignment: Alignment.topRight,
-          child: Image.asset(
+          child: Image.network(
             AppImages.lineDotTopRight,
             height: size.height * 0.43,
           ),
@@ -61,7 +61,7 @@ class BackgroudWidget extends StatelessWidget {
     Widget decorationTopRight() {
       return Align(
         alignment: Alignment.topRight,
-        child: Image.asset(
+        child: Image.network(
           AppImages.kananAtas,
           height: size.height * 0.35,
         ),
@@ -71,7 +71,7 @@ class BackgroudWidget extends StatelessWidget {
     Widget decorationBottomLeft() {
       return Align(
         alignment: Alignment.bottomLeft,
-        child: Image.asset(
+        child: Image.network(
           AppImages.kiriBawah,
           height: size.height * 0.35,
         ),
@@ -81,7 +81,7 @@ class BackgroudWidget extends StatelessWidget {
     Widget lineBottomLeft() {
       return Align(
         alignment: Alignment.bottomLeft,
-        child: Image.asset(
+        child: Image.network(
           AppImages.lineDotBottomLeft,
           height: size.height * 0.43,
         ),

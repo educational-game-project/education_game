@@ -1,3 +1,4 @@
+import 'package:education_game/utils/audio.dart';
 import 'package:education_game/utils/images.dart';
 import 'package:education_game/views/pages/game/gambar/model/tebak_gambar.dart';
 
@@ -5,7 +6,7 @@ class TebakGambarConst {
   TebakGambarConst._();
   static const level1 = TebakGambar(
     level: 1,
-    audio: '',
+    audio: AppAudios.semangka,
     answers: [
       AppImages.apel,
       AppImages.nanas,
@@ -19,7 +20,7 @@ class TebakGambarConst {
   );
   static const level2 = TebakGambar(
     level: 2,
-    audio: '',
+    audio: AppAudios.kucing,
     answers: [
       AppImages.kelinci,
       AppImages.ayam,
@@ -32,7 +33,7 @@ class TebakGambarConst {
   );
   static const level3 = TebakGambar(
     level: 3,
-    audio: '',
+    audio: AppAudios.ayam,
     answers: [
       AppImages.kelinci,
       AppImages.ayam,

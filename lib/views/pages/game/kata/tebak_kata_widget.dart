@@ -1,6 +1,5 @@
 import 'package:education_game/controller/game_controller.dart';
 import 'package:education_game/utils/colors.dart';
-import 'package:education_game/views/widgets/button/custom_button_widget.dart';
 import 'package:education_game/views/widgets/drag_and_drop/draggable_widget.dart';
 import 'package:education_game/views/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -77,11 +76,15 @@ class TebakKataWidget extends HookWidget {
       );
     }
 
-    Widget itemDraggable(String char) {
-      return CustomButtonWidget(onTap: () {}, child: TextWidget(text: char));
-    }
-
     Widget draggable(String char) {
+      var word = gameController.tebakKata.word;
+      var wordAnswered = gameController.wordTebakKata.value;
+      var indexs = List<int>.empty(growable: true);
+      for (var i = 0; i < word.length; i++) {
+        if (word[i] != wordAnswered[i]) indexs.add(i);
+      }
+      var isDragged = indexs.any((e) => char == wordAnswered[e]);
+      if (isDragged) return SizedBox(height: 24.sp, width: 24.sp);
       return DraggableWidget(
         data: gameController.answerTebakKata.value.indexOf(char),
         keepWidget: true,

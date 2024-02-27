@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class AyoBerhitung extends Equatable {
   final int level;
+  final String image;
   final int number1;
   final int number2;
   final List<int> answers;
@@ -9,6 +10,7 @@ class AyoBerhitung extends Equatable {
 
   const AyoBerhitung({
     required this.level,
+    required this.image,
     required this.number1,
     required this.number2,
     required this.answers,
@@ -18,6 +20,7 @@ class AyoBerhitung extends Equatable {
   @override
   List<Object?> get props => [
         level,
+        image,
         number1,
         number2,
         answers,

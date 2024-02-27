@@ -35,7 +35,7 @@ class ImageButtonWidget extends HookWidget {
     }
 
     Widget defaultContent() {
-      return Image.asset(
+      return Image.network(
         image,
         height: height,
         width: width,
