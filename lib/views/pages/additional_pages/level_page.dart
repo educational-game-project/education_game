@@ -77,7 +77,7 @@ class LevelPage extends HookWidget {
     return Obx(() {
       return BackgroudWidget(
         isLoading: gameController.isLoading.value,
-        onTapHome: () => Get.offAll(const HomePage()),
+        onTapHome: () => Get.offAll(() => const HomePage()),
         onBack: () => Get.back(),
         title: gameController.gameEnum.value.getTitle,
         child: SizedBox(

@@ -35,6 +35,7 @@ class LeaderBoardPage extends HookWidget {
     }
 
     Widget itemMain(LeaderboardModel leaderboard, int ranked) {
+      var flex = gameController.leaderboards.value.length > 3 ? 1 : 0;
       return VStack(
         [
           Container().expand(),
@@ -71,7 +72,7 @@ class LeaderBoardPage extends HookWidget {
         ],
         alignment: MainAxisAlignment.end,
         crossAlignment: CrossAxisAlignment.center,
-      ).px(2.sp).expand();
+      ).px(2.sp).expand(flex: flex);
     }
 
     Widget itemSeconds(LeaderboardModel leaderboard, int ranked) {
@@ -124,7 +125,7 @@ class LeaderBoardPage extends HookWidget {
       //     : gameController.leaderboards.value[0];
       // var generated = user == null ? [] : List.filled(20, user);
       // var listRanked = generated;
-      // var listRanded2 = generated;
+      // var listRanded2 = generated.length < 3 ? [] : generated.sublist(3);
       var listRanked = gameController.leaderboards.value;
       var listRanded2 = gameController.listRanked3Up;
       return BackgroudWidget(
@@ -161,17 +162,21 @@ class LeaderBoardPage extends HookWidget {
             ),
             HStack([
               if (listRanked.isNotEmpty)
-                HStack([
-                  if (listRanked.length > 1) itemMain(listRanked[1], 2),
-                  itemMain(listRanked[0], 1),
-                  if (listRanked.length > 2) itemMain(listRanked[2], 3),
-                ]).expand(),
+                HStack(
+                  [
+                    if (listRanked.length > 1) itemMain(listRanked[1], 2),
+                    itemMain(listRanked[0], 1),
+                    if (listRanked.length > 2) itemMain(listRanked[2], 3),
+                  ],
+                  alignment: MainAxisAlignment.center,
+                ).expand(flex: 4),
               if (listRanded2.isNotEmpty)
                 ListView(
+                  padding: EdgeInsets.symmetric(vertical: 12.sp),
                   children: listRanded2.mapIndexed((e, index) {
                     return itemSeconds(e, index + 1);
                   }).toList(),
-                ).expand(),
+                ).expand(flex: 3),
             ]).expand()
           ],
         ).px(Get.width * 0.1).pOnly(top: Get.height * 0.1),

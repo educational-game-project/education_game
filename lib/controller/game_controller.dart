@@ -39,20 +39,29 @@ class GameController extends GetxController {
 
   final isLoading = Rx(false);
 
+  @override
+  void onClose() {
+    reset();
+    super.onClose();
+  }
+
   // set
   void setGameEnum(GameEnum value) {
+    resetLevel();
     gameEnum.value = value;
     selectedGame.value = listGame.value.firstWhere(
       (e) => e.gameEnum == gameEnum.value,
     );
-    debugPrint('selectedGame : ${selectedGame.value}');
-    debugPrint('selectedGame : ${listGame.value}');
-    debugPrint('selectedGame : ${gameEnum.value}');
   }
 
   void setLevel(int level) {
     selectedLevel.value = level;
     reset();
+  }
+
+  void resetLevel() {
+    selectedLevel.value = 1;
+    currentLevel.value = 1;
   }
 
   void setLeaderboards(List<LeaderboardModel> value) {
@@ -105,20 +114,24 @@ class GameController extends GetxController {
       case PlayerState.paused:
         return await audioPlayer.resume();
       default:
-        return await audioPlayer.play(UrlSource(tebakGambar.audio));
+        return await audioPlayer.resume();
+      // return await audioPlayer.play(UrlSource(tebakGambar.audio));
     }
   }
 
-  _setListenerAudion() {
+  _initAudion() async {
+    setLoading(true);
     debugPrint('set listen audio : ${audioState.value}');
+    await audioPlayer.setSourceUrl(tebakGambar.audio);
     audioSubs = audioPlayer.onPlayerStateChanged.listen((state) {
       audioState.value = state;
       debugPrint('state : ${audioState.value} : $state');
     });
+    setLoading(false);
   }
 
   initTebakGambar() {
-    Future.delayed(Duration.zero, () => _setListenerAudion());
+    Future.delayed(Duration.zero, () => _initAudion());
   }
 
   void onAnswerTebakGambar(String value) {
@@ -303,9 +316,6 @@ class GameController extends GetxController {
 
   Future<void> getLevelGame() async {
     setLoading(true);
-    debugPrint('selected level : ${gameEnum.value}');
-    debugPrint('selected level1 : ${listGame.value}');
-    debugPrint('selected level2 : ${selectedGame.value}');
     var param = GameParam(id: selectedGame.value?.id);
 
     final resp = await apiRepository.getLevel(param);

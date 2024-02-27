@@ -35,7 +35,7 @@ class GamePage extends StatelessWidget {
           isLoading: gameController.isLoading.value,
           onTapHome: () {
             gameController.reset();
-            Get.offAll(const HomePage());
+            Get.offAll(() => const HomePage());
           },
           // onTapHome: () => Get.to(const LeaderBoardPage()),
           onBack: () => Get.back(),
