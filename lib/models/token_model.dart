@@ -1,6 +1,6 @@
+import 'package:education_game/utils/storage.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 enum TokenEnum {
   accessToken,
@@ -14,7 +14,6 @@ class TokensModel extends Equatable {
   final String refreshToken;
   final DateTime? accessTokenExpires;
   final DateTime? refreshTokenExpires;
-  final _storage = const FlutterSecureStorage();
 
   static int get accessTokenActiveSession => 1;
   static int get refreshTokenActiveSession => 3;
@@ -35,13 +34,13 @@ class TokensModel extends Equatable {
 
   Future<TokensModel> read() async {
     final accessToken =
-        await _storage.read(key: TokenEnum.accessToken.name) ?? '';
+        await Storage.local.read(key: TokenEnum.accessToken.name) ?? '';
     final refreshToken =
-        await _storage.read(key: TokenEnum.refreshToken.name) ?? '';
+        await Storage.local.read(key: TokenEnum.refreshToken.name) ?? '';
     final accessTokenExpires =
-        await _storage.read(key: TokenEnum.accessTokenExpires.name) ?? '';
+        await Storage.local.read(key: TokenEnum.accessTokenExpires.name) ?? '';
     final refreshTokenExpires =
-        await _storage.read(key: TokenEnum.refreshTokenExpires.name) ?? '';
+        await Storage.local.read(key: TokenEnum.refreshTokenExpires.name) ?? '';
     return TokensModel(
       refreshToken: refreshToken,
       accessToken: accessToken,
@@ -52,21 +51,21 @@ class TokensModel extends Equatable {
 
   Future<void> save() async {
     debugPrint('saving token $accessToken $refreshToken');
-    await _storage.write(
+    await Storage.local.write(
       key: TokenEnum.accessToken.name,
       value: accessToken,
     );
-    await _storage.write(
+    await Storage.local.write(
       key: TokenEnum.refreshToken.name,
       value: refreshToken,
     );
-    await _storage.write(
+    await Storage.local.write(
       key: TokenEnum.accessTokenExpires.name,
       value: DateTime.now()
           .add(Duration(days: accessTokenActiveSession))
           .toIso8601String(),
     );
-    await _storage.write(
+    await Storage.local.write(
       key: TokenEnum.refreshTokenExpires.name,
       value: DateTime.now()
           .add(Duration(days: refreshTokenActiveSession))
@@ -74,19 +73,11 @@ class TokensModel extends Equatable {
     );
   }
 
-  void remove() {
-    _storage.delete(
-      key: TokenEnum.accessToken.name,
-    );
-    _storage.delete(
-      key: TokenEnum.refreshToken.name,
-    );
-    _storage.delete(
-      key: TokenEnum.accessTokenExpires.name,
-    );
-    _storage.delete(
-      key: TokenEnum.refreshTokenExpires.name,
-    );
+  Future<void> remove() async {
+    await Storage.local.delete(key: TokenEnum.accessToken.name);
+    await Storage.local.delete(key: TokenEnum.refreshToken.name);
+    await Storage.local.delete(key: TokenEnum.accessTokenExpires.name);
+    await Storage.local.delete(key: TokenEnum.refreshTokenExpires.name);
   }
 
   @override
