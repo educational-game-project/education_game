@@ -1,19 +1,51 @@
-# education_game
+# Educational Game
 
-A new Flutter project.
+An Educational Game for playground students with cognitive learning focus. This has 3 game themes, math, identification cognitive, and completing the word.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+![App Screenshot](https://res.cloudinary.com/sningratt/image/upload/v1705343945/z2frpr2txaykhtfhjupy)
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Game Scoring
+- 3 Game Themes
+- Win & Lost Flow
+- Interactive Game
+- Users Leaderboard
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech Stack
 
-Figma Link: https://www.figma.com/file/7yAMFoLBROUlGhBW7sv1JF/Game-Project?type=design&node-id=410%3A46&mode=design&t=vUviSuF8C2uvqY9g-1
-Postman Link: https://app.getpostman.com/join-team?invite_code=b69255e19c972d3664e07049cc8c7be5&target_code=a73b1487bdbe171d90ca996dd4d79f94
+**Backend:** NodeJs, Typescript, NestJs
+
+**Database:** MongoDB
+
+**DevOps:** Docker, GitHub Workflow
+
+**Frontend:** ReactJs, Vite, Typescript, TailwindCss
+
+**Mobile:** Dart, Flutter
+
+## Demo
+
+[Download Game](https://drive.google.com/file/d/1IGquN-0D8IKjtpjYAw8iRGNuWQeARBII/view?usp=sharing)
+
+## Authors
+
+- [@iwansuryaningrat](https://www.github.com/iwansuryaningrat)
+
+## Contributing
+
+Contributions are always welcome!
+
+## Feedback
+
+If you have any feedback, please reach out to us at iwan.suryaningrat28@gmail.com
+
+## Support
+
+For support, email iwan.suryaningrat28@gmail.com.
+
+## License
+
+[MIT](https://github.com/nestjs/nest/blob/master/LICENSE)
