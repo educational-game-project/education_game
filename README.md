@@ -26,6 +26,38 @@ An Educational Game for playground students with cognitive learning focus. This 
 
 **Mobile:** Dart, Flutter
 
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/sningratGames/education_game.git
+```
+
+Go to the project directory
+
+```bash
+  cd education_game
+```
+
+Install dependencies
+
+```bash
+  flutter pub get
+```
+
+Start the app
+
+```bash
+  flutter run
+```
+
+Build the app
+
+```bash
+  flutter build apk
+```
+
 ## Demo
 
 [Download Game](https://drive.google.com/file/d/1IGquN-0D8IKjtpjYAw8iRGNuWQeARBII/view?usp=sharing)
