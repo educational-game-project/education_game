@@ -25,7 +25,7 @@ class BaseResponse<T> {
   factory BaseResponse.fromJson(Map<String, dynamic> json) {
     return BaseResponse(
       success: json['success'] ?? false,
-      statusCode: json['status_code'] ?? 400,
+      statusCode: json['statusCode'] ?? 400,
       status: json['status'] ?? 'error',
       message: handleMessage(json['message']),
       serverTime: json['server_time'],
