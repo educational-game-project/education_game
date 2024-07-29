@@ -1,6 +1,6 @@
 class EndPoints {
   // host
-  static const host = 'https://be-game.cyclic.app';
+  static const host = 'https://game-api.iwansuryaningrat.tech';
 
   // auth
   static const loginUrl = '/login';
