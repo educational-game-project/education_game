@@ -31,7 +31,6 @@ class AuthCubit extends Cubit<AuthState> {
         debugPrint(
             'tokens saved ${(await state.tokens?.read())?.accessToken.toString()}');
         Get.offAll(() => const HomePage());
-        // Get.snackbar('Login Success', 'Welcome ${event.responses.user.name}');
       }
 
       if (event is LogoutSuccess) {

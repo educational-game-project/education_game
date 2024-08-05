@@ -47,7 +47,6 @@ class _LoginPage extends StatelessWidget {
           isLoading: state.apiState is ApiLoading,
           onBack: () => Get.back(),
           onContinue: () {
-            // if (formKey.currentState!.validate()) {
             if (controller.text.isNotEmpty) {
               context.read<AuthCubit>().login(controller.text.trim());
             }
