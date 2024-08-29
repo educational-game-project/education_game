@@ -5,6 +5,7 @@ import 'package:education_game/models/token_model.dart';
 import 'package:education_game/models/user/user_model.dart';
 import 'package:education_game/repositories/params/login_params.dart';
 import 'package:education_game/repositories/params/refresh_tokens_params.dart';
+import 'package:education_game/views/pages/chooseGame/choose_game.dart';
 import 'package:education_game/views/pages/home/home_page.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
         await state.tokens?.save();
         debugPrint(
             'tokens saved ${(await state.tokens?.read())?.accessToken.toString()}');
-        Get.offAll(() => const HomePage());
+        Get.offAll(() => const ChooseGame());
       }
 
       if (event is LogoutSuccess) {

@@ -1,6 +1,7 @@
 import 'package:education_game/controller/game_controller.dart';
 import 'package:education_game/enums/game/game_enum.dart';
 import 'package:education_game/views/pages/additional_pages/level_page.dart';
+import 'package:education_game/views/pages/home/home_page.dart';
 import 'package:education_game/views/widgets/background_widget.dart';
 import 'package:education_game/views/widgets/button/custom_button_widget.dart';
 import 'package:education_game/views/widgets/text/text_widget.dart';
@@ -55,7 +56,7 @@ class ChooseGame extends HookWidget {
     return Obx(() {
       return BackgroudWidget(
         isLoading: gameController.isLoading.value,
-        onBack: () => Get.back(),
+        onBack: () => Get.to(const HomePage()),
         title: 'Pilih Permainan',
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
