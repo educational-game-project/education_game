@@ -294,7 +294,6 @@ class GameController extends GetxController {
   }
 
   void _recordGameSuccess(GameResponse gameResponse) {
-    //TODO
     setLoading(false);
   }
 
