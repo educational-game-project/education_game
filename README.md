@@ -31,7 +31,7 @@ An Educational Game for playground students with cognitive learning focus. This 
 Clone the project
 
 ```bash
-  git clone https://github.com/sningratGames/education_game.git
+  git clone https://github.com/educational-game-project/education_game.git
 ```
 
 Go to the project directory
