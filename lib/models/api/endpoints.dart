@@ -11,7 +11,7 @@ class EndPoints {
   static const gameUrl = '/games';
 
   // level
-  static const levelUrl = '/levels/find';
+  static const levelUrl = '/level';
   static const levelInitUrl = '/level/init';
 
   // record
